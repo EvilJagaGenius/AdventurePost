@@ -1,0 +1,10 @@
+o~(Pakari-wearing Matoran) Did you hear about Hafu and that Koli game?|(Kakama-wearing Matoran) Oh, yeah.  Saw it, heard it, everything.  Ahkmou's gonna have a hard time living that down.|(Both) Oh!  You... eh.. startled us.  Huki.
+m~Sup, Huki?  And.. hey, could we get autographs?  Just do it on the Husi bird.  He won't mind.
+q0~What about Ahkmou?
+r0~(Pakari) Well, you know how Ahkmou's been experimenting with things lately?  Said he was working on Koli balls.|(Kakama) And not just any Koli balls.  Hollowed-out, liquid-cored balls... or was it gel-cored?  Can't remember.|(Pakari) Nah, liquid-cored.  Which is nigh on impossible, seeing as though you can't really stick stones together once you split them in two, and hollow them out... Hence Ahkmou's problems.|(Kakama) Somehow he managed to work up a prototype, though.  Hafu was raving about it.  Said it floated like a feather, flew like a Jaga's sting... or something like that.  He goes up to score a goal with it, nails it past Taipu, and.. the thing shatters.|(Pakari) Left goo all over the floor.  The goal gets disqualified, and the match is paused for fifteen minutes while they clean things up.  If that doesn't hurt Ahkmou, I don't know what will.
+q1~See you guys later, then.
+r1~(Kakama) Yeah!  Like a boss!
+q2~
+q3~
+bye~r1
+addCmds~if self.state=='r1' and self.part==1: scenes.Ahkmou.editWords('ahkmou2.txt', player)

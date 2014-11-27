@@ -1,0 +1,12 @@
+o~Eh?  What's that?|Sorry.  Don't get too many visitors around Po-Wahi these days.
+m~What can I do for you?  Need a boat?  Information?  A souvenier, maybe?
+q0~Who are you?
+q1~I'd like a souvenier.
+r2~Po-Wahi is... well, there's not much to it, really, mostly sand... lots of sand... But there are the canyons, which are real pretty to look at, if the sun or Rahi don't get you first, and the Path of Prophecies, which the ancient carvers made.|Po-Koro's a decent place too, and don't miss the games.  Most everyone on Mata Nui shows up when there's a Koli game.
+q3~Goodbye.
+r0~I'm Pekka.  Unofficially in the Po-Koro guard.|I never really joined, but when the guys back home need help, I come running over there.|Po-Koro's right on down this road.  Just follow the signs, and you'll be there in no time.  And if you do get lost, Hafu can help you.  Good guy, but a little odd in the head.
+r1~Got any cash?  No?  What the heck DO you have in that bag?  Nothing?|Oh well, I suppose I can give you this.  My buddy Midak gave me a crate of lightstones, and besides, you really shouldn't be caught without one.
+q2~What is Po-Wahi?
+r3~Stay outta the sun!
+bye~r3
+addCmds~if self.state=="r1" and self.part==1:self.giveStuff(player, scenes.Lightstone)

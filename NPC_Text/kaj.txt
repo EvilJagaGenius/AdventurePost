@@ -1,0 +1,11 @@
+o~Hello, stranger.  What brings you into this odd corner of Onu-Wahi?  Did you get lost?|Don't worry.  It isn't that far from Ta-Koro, and I know the way.
+m~Or, if you came here on purpose, what do you need?
+q0~Who are you?
+q1~What is that machine behind you?
+q2~Why are there ashes in this passageway?
+q3~Goodbye, I think I know the way out.
+r0~My name is Cmd. Kaj, Ussalry Class 2 Guard, Section 5.  I keep watch over the Lightstone mines and Ta-Koro.|We just found a new deposit a while ago--right down the staircase--and the diggers nicknamed it "The Cavern of Light".  It's prettier than the Megasphere down there, even with all the people digging.|Actually, we sent a lot of Lighstones over to the Megasphere, and they've been spending months replacing their dim stones with the fresh ones from the mine.
+r1~This, my friend, is a lava pump.  This is actually Ta-Koroan property, but the engineers in Onu-Koro invented it.  All those pipes you see in the passageway are leading to lava farmers in Ta-Wahi, who send it up to the guards in the Northern March.|There are many pumps like this one.  Lava comes in, goes back up a pipe leading straight up the mountain, arrives in Ko-Wahi to give some heat to the Ta-Koro Guard fighting Rahi in that icy waste.  When the lava cools, it's sent back down and pumped back to Ta-Wahi to be reheated and reused.
+r2~That is one flaw in the lava pump system.  When the pipes are over-pressurized and are in danger of bursting, the lava flow is diverted into holding tanks.  Whenever lava enters a tank, it sounds an alarm in the mine, because the tanks can only hold so much lava before they burst too.|Once we get out, we lock the mine, and time the pump to open a few holes in the pipes.  The pipes dump out lava into a moat, relieving pressure on them, but the moat also keeps us from the mine.|However, when we shut off the lava flow from that particular set of pipes, the lava eventually dries up and we start digging again.  The ashes are left in the moat.
+r3~The road on the right leads to Ta-Koro, the road on the left to Onu-Koro.
+bye~r3

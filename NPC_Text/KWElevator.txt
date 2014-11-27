@@ -1,0 +1,10 @@
+o~Great Mine Elevator, station *ERROR: SELF.STATION=NONE*
+m~Select a destination.
+q0~Prospecting Ledge
+q1~Leave
+q2~
+q3~
+r0~...
+r1~Shutting down...
+bye~r1
+addCmds~if self.state=='r0': self.teleport=scenes.onuElevator1

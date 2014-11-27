@@ -1,0 +1,3 @@
+o~Onu-Koro Engineering Lab, Do Not Enter|(Wait, there's a sign on the door--)|(Damek) I know what it says, hold on.|*BANG BANG BANG*|Hello?  This is Cmd. Damek!  Open up!  I know you're in there, Nuparu!|(Voice)  No, you don't.  I've read the training manual, and you can't identify me as Nuparu until you can see me.|(Damek)  Whether you're Nuparu or not, you're under arrest for practicing engineering without a permit!|(Voice, opens door)  Oh, officer, I didn't think you needed a permit, but I have a badge, let me show you it--oh, snap, that was the point, wasn't it...
+bye~None
+addCmds~if self.part==8: self.teleport=scenes.onuKoro11; scenes.Lab.editWords("lab3.txt", player)

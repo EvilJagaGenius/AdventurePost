@@ -1,0 +1,10 @@
+o~Torches!  Don't get left in the dark!  Quality Ta-Koroan made!|Hello, stranger.  Interested in well-made sources of light and heat?
+m~What can I do you for?
+q0~Who are you?
+q1~Do these attract Kofu-Jaga?
+q2~Goodbye.
+q3~
+r0~Vohon, trader from Ta-Koro!  Giving you the best price for your goods, selling them at low prices, and remarkably, not going bankrupt!|What do you think, does the spiel need some work?|(...uhhh...)|That's what I thought!  Give the man a cigar!  And a torch to light it with!
+r1~Ummm... Maybe?|I mean, possibly, they could, theoretically... given enough time...|(whispering) Okay, so the studies show these do attract Jaga.  But I can't let anyone know.   My buisness would fail.  And I made a bet to some people in Ta-Koro that I could sell these.|Well, not really a bet.  More like... an investment!  Yeah, an investment.
+r2~Torches!  Matches!  Fifty percent discounts for certified pyromaniacs!
+bye~r2

@@ -1,0 +1,11 @@
+o~Hey, pal, you awake?  Where is everyone?|*shake*  Come on, wake up. *clink*|What's that?  It looks like some sort of... syringe.  It came from his neck... what are the fins for?
+m~ 
+q0~Examine wound
+q1~Examine computer
+q2~Leave
+q3~
+r0~Huh.  It must have gone straight into his neck.  But it doesn't look like he struggled, or that someone grabbed his neck...|...could someone have thrown it?  They'd have to be an extremely good shot.  Where would it have come from, then?  Not the door.  He would have noticed someone at the door.
+r1~North March Viewscreen Terminal Alpha: 1447 Hours|*SYSTEM LOCKED* Last logon session:  1032 Hours
+r2~Weird... wait, did a door just open?
+bye~r2
+addCmds~if self.state=='o' and self.part==2: self.giveStuff(player, scenes.TranqDart); scenes.fortress13.addHotSpot(scenes.fortress14, pygame.Rect(140,100,340,200), False, player); scenes.fortress13.delHotSpot(scenes.fortress9, player)

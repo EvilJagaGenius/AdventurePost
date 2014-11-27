@@ -1,0 +1,10 @@
+o~Have you heard, stranger?  The Rahi are increasing in number, and belligerance.  Matoran are vanishing.  Matoran also appear with the Rahi that attack us.  Captain Piatara reports the same from Po-Wahi, Onepu from Onu-Wahi.|Between these skirmishes, our territory is shrinking.  And this is leading me to a disturbing conclusion... but I do not have enough data, and my scouts are few in number.
+m~There are never enough good warriors to send against the Rahi.  You look stout, traveller... you should consider a career in the Guard.
+q0~Who are you?
+q1~Goodbye.
+q2~What attacks?
+q3~
+r0~I am Jala, Captain of the Ta-Koro Guard, the greatest fighting force on Mata Nui.  My men are brave and strong from countless duels against Makuta and the Rahi.  We must be, else we would certainly be crushed by Makuta's forces.|And still that may not be enough.  With the Rahi's increasing number, I lose more men each time we go out to battle.  I cannot tell if they die or not, for they are soon overrun by the Rahi, but I never see them again.
+r1~May Tahu protect you, stranger.
+r2~We fight all over Mata Nui.  We escort the ships over the troubled rivers, in the deep forests, in the desert wastes of your home, Po-Wahi.|Lately, however, we have lost a fight with the Rahi in the Charred Forest.  It used to be a lush, beautiful place, but in the fury of our battles, it burnt into the dead land you see. Now, monsters stalk its black remains.|We are barely holding on to the Tren Krom Break, the lava moat between us and Ko-Wahi.  If that is lost, the Northern March guarding Ko-Wahi may not survive.
+bye~r1

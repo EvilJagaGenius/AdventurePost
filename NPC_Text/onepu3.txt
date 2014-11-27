@@ -1,0 +1,9 @@
+o~Aha.  You're back.  What did Jala have to say?|(He told me to talk to you, and show you his ring.)|His ring!  Yes, the ring... let me see...|I don't often wear a signet ring like Jala's, mainly because I'm wearing gauntlets whenever I go in the tunnels.  Hit something with a ring on and it leaves a big dent in your hand.|Here it is.  Take good care of it.  That's a raw, uncut emerald in the center, there.|Hold on.  This is strange.  I'm getting warnings from the Great Mine... (He pulls out a radio.)|*kzzzhk*...suspect is armed and *whirrrzzk* has a *zzizzz* device, currently in *fizzzzzz*...|Nothing but static.  I need more info than that.  Can you get over there and find out what's the situation?
+m~I need more information and my radio's shot.  Can you get to the Great Mine?
+q0~Yes, I will help you.
+q1~
+q2~
+q3~
+r0~Thank you, Huki.  And hurry--whatever it was, it sounded urgent.  There might not be much time.
+bye~r0
+addCmds~if self.state=='o' and self.part==4: self.giveStuff(player, scenes.OnepusRing); scenes.Prospector.editWords('prospector2.txt', player)

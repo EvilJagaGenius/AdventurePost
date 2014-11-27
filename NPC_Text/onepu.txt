@@ -1,0 +1,11 @@
+o~Hello, traveler.  Looks like you're traveling light--you really should pick up a good disc at the market.|Say, are you the hot-shot who put our Koli team to shame earlier?  I guess we Onu-Matoran are still picking up your sport.
+m~You look like a true athlete, traveler.  We could use your type in the Ussalry.
+q0~Why do I need a disc?
+q1~Who are you?
+q2~OPA?  CCG?
+q3~Goodbye.
+r0~Rahi.  Monsters.  Nasty things... particularly the Kofu-Jaga.|No, not Nui-Jaga.  The Kofu-Jaga are much smaller, faster, and they always come in swarms.  They eat heat and give it right back to you with a burning sting.|Actually, I would recommend stopping by the OPA lab and picking up something from there for the Jaga.  A CCG would do the trick, but still, you should always pack a sharp disc.
+r1~My name is Onepu.  I command the Ussalry, the military around here.  We defend the miners and trade caravans, fight back Rahi infestations, all with the help of our loyal Ussal crabs.|If you took Midak's crabs over here, you should know what I mean.  The things could pull whole statues if you found some way to tie them to it, and are more than willing to follow you into a firefight.
+r2~OPA stands for Onu-Pneumatic Armory, a subdivision of the engineering labs.  They build weaponry for the Ussalry based off of compressed gas.  Some of them are real gems, like the net launchers we use for sealing off Kofu-Jaga nests from a distance.|Their most popular model is the Compact Chain Gun, a rifle with three cyclic barrels.  It's small enough to take long distances or go into tight quarters, but powerful enough to hold an angry Tarakava at bay.
+r3~Take care.
+bye~r3

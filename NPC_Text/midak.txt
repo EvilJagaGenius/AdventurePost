@@ -1,0 +1,11 @@
+o~Howdy, Traveler!  Need a crab to Onu-Koro?  Awful dark in there, but Puku knows the way.
+m~I heard there's another Ussal race coming up.  Make sure you catch it if you're in town.
+q0~Who are you?
+r0~Name's Midak!  I own the taxi service out here, on the Onu-Po-Wahi Highway.  Lets me get a good tan out here.|Yeah, yeah, I've got no tan on me.  But it feels way nice, lemme tell ya.|And this here's Puku!  Retired racing crab, used to belong to none other than Onepu himself.  Took the title three times with him.  She's a bit long in the tooth now, but still fast.
+q1~What race?
+r1~The Ussal crabs are strong and loyal.  They help us with many things here, from mining to transportation, but mostly racing.  I'm usually at the track, but with all the problems these days, there isn't much time for it.
+q2~What is Onu-Koro?
+r2~Thar be down this tunnel the great undercity of Onu-Koro, with mines sinkin' as deep as Mt. Ihu is tall!  The wise Whenua rules there.|Sometimes people come in for strength training, but most come to see the races!  Man, those stadiums are as packed as Po-Koro on a Koli day.
+q3~Goodbye.
+r3~Bye now!
+bye~r3

@@ -1,0 +1,10 @@
+o~Hail traveler!  Sgt. Agni, Ta-Koro Guard, at your service, SIR YES SIR!
+m~Question:  What brings you to Ta-Koro SIR!?
+q0~Where is Captain Jala?
+q1~You don't have to call me sir all the time.
+q2~
+q3~Goodbye...
+r0~Go across this bridge sir!  Captain Jala's office is on the left sir!
+r1~That's true, sir, I don't have to call you sir.  But... there's always Catch-22, sir.|(What the heck is Catch-22?)|Uhhh... I don't really know, sir, except Captain Jala has me say sir to everyone passing by, sir.
+r3~SIR YES SIR!  GOODBYE, SIR!
+bye~r3

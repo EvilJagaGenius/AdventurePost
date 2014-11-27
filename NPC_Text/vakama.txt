@@ -1,0 +1,11 @@
+o~Hello, stranger.  I do not believe we have met before.|My name is Vakama.  I am the Turaga of Ta-Koro.  And who are you, brave Matoran who would come to this beseiged city of fire?|Huki... it is a good name.  And by your appearance here, it shows you bear it well.
+m~What brings you here?
+q0~Tell me about the Prophecies.
+q1~Tell me about Makuta.
+q2~Tell me about the Toa.
+q3~Goodbye.
+r0~The Prophecies are a part of our history.  Each Prophecy corresponds to a constellation.  When that constellation is clearly visible in the skies, the event predicted by its Prophecy occurs.|While the Prophecies have changed, they have never been wrong.  Mata Nui's slumber, the attack of the Rahi, they have all been predicted by the Prophecies.|There is a telescope near the beach.  If you look through it, you can see the stars, no matter what time of day it is.  On its base are the Prophecies that have been predicted, but not yet fulfilled.
+r1~Makuta is Mata Nui's brother, as we know.  When Mata Nui blessed the Matoran with their island home, Makuta became... enraged.  With some mean of black magic, he cast a spell that threw Mata Nui into a coma.|Determined to harm Mata Nui's favorite people, the Matoran, Makuta has unleashed the Rahi against us.  His desire is to enslave us all, and if it was not for the efforts of the Ussalry and the Guards, he would have succeeded long ago.|Mata Nui has slept for a thousand years... he will only awaken again when the Toa arrive and defeat Makuta.|Excuse me... this tale means much to me.  I... watched a friend die because of it, in a faraway place.
+r2~According to the Prophecies, there are six Toa.  When they arrive, they must each find five great Kanohi, to gain the power and skill to defeat Makuta.|Tahu, Toa of fire.  Onua, Toa of earth.  Pohatu, Toa of stone.  Kopaka, Toa of Ice.  Gali, Toa of water.  And Lewa, Toa of air.
+r3~Farewell, stranger.
+bye~r3

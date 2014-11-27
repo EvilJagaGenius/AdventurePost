@@ -1,0 +1,11 @@
+o~Good day.
+m~If you're looking for Po-Koro, Huki, take the road to the right.  My right.  Or is it your right?
+q0~Who are you?
+r0~The name be Hafu, best sculptor on the island, I dare say.|Everyone else thinks I'm losing my mind.  I can't seem to figure out why.
+q1~What are those heads doing on the road?
+r1~Heads?  Those aren't heads!  That's ART, for crying out loud!|Every single stinking Matoran coming down this road comes up and says, "Hafu, what the heck are all those decapitated heads doing in front of Po-Koro?"|They're not heads, you idiot, it's the bloody Path of Prophecies!|Oh, and I sculpted them too.  Aren't they beautiful?
+q2~Where does the roads take me?
+r2~Number one, it's where DO the roads take me, not does.|Anyway, the road going up to the mountain leads to Onu-Wahi and the tunnel networks.|The one leading to the Path of Prophecies and the two towers with the Koli ball between them is Po-Koro.|The other road leads to the beach and the quarry.  The quarry's basically deserted by now.
+q3~Goodbye.
+r3~Make sure you tell everyone that those aren't heads lying beside the road.
+bye~r3

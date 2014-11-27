@@ -1,0 +1,11 @@
+o~It is hard to dig through this rock.  But Onepu says I have to try.  Someday we will reach Le-Koro.
+m~If the Rahi attack the site, traveler, stay near me.  I will protect you.
+q0~Who are you?
+q1~Why are you digging?
+q2~What is Le-Koro?
+q3~Goodbye.
+r0~I am Taipu.  I am leading the digging to Le-Koro.  Onepu was supposed to be here digging too, but he showed me how I could do both our digging at the same time.
+r1~We are digging a highway to the village of Le-Koro.  Whenua says I am the strongest of the Onu-Matoran, so I am leading the way.
+r2~It is a village in the south, where the Le-Matoran live in trees.  I have never been there.  Onepu says there are tall, pretty forests, and huts built in the sky!  Onepu says the Le-Matoran are musicians, too, and play music all day long from the treetops.
+r3~Goodbye.
+bye~r3

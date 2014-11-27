@@ -1,0 +1,4 @@
+g~Let's go get Nuparu.|He's probably in the lab, you know, the building with the sign that says "Onu-Koro Engineering Lab".
+scenes.onuKoro2~That's right, try the door.  Trust me, he's in there.
+scenes.onuElevator1~The code to access the Ko-Wahi tunnels is 5887930.
+addCmds~if currentScene=='scenes.onuElevator2': self.editWords(cDamek2.txt, player)

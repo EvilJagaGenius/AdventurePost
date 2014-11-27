@@ -1,0 +1,11 @@
+o~Ohai there Hux!
+m~So--You here for a koli game?  Do you know when the next one is?  That one in Onu-Koro was FANTASTIC!  Don't you think?
+q0~Who(on earth)are you?
+r0~Me?  I'm Gadjati, you're biggest fan, Hux!  Guy waving the bright orange flag!  Koli fanatic!
+q1~Umm... Caffiene much?
+r1~Really?  I just had one cup of tea this morning... just normal, no sugar...|I don't think it's that bad... It's really good tea, too--I got it from Le-Wahi...|AAUGH!  I ADMIT IT!  IT WAS A BUBBA KEG!  WITH TEN SUGAR PACKETS!  AND CREAMER!
+q2~Where are all the pies?
+r2~That's what I was wondering, too... someone ate all the pies.  I really don't have a clue who did it, though.|Hey, don't look at me!  I only had one!|If you find Captain Piatara anywhere, you should ask him to investigate.  It always seems there are never enough pies at a Koli game.
+q3~Goodbye.
+r3~See ya, Hux!
+bye~r3

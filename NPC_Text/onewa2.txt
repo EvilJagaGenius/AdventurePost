@@ -1,0 +1,10 @@
+o~Hello, Huki!
+m~I hope your memory has returned to you.
+q0~
+q1~What's up with Ahkmou?
+r1~I do not know.  He was the only late arrival to the village, yet he seems determined to make himself into  a melodramatic outcast.|However, it would be a kindness, if ignored, if we all let him be.
+q2~
+q3~Goodbye.
+r3~I wish you the speed of Pohatu.
+bye~r3
+

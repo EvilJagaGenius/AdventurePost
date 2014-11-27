@@ -1,0 +1,12 @@
+o~Hello, Huki!|Just taking a break from my usual work--all that mining puts some strain on you.  Up for a Koli match?
+m~You know you can practice all you want with the spare stones from the quarry.  But don't hang around too long--Captain Piatara told me to send you to the guardhouse.
+q0~Who are you?
+r0~I'm Epena, the Quarry Master.  I oversee all the mining done in Po-Wahi's quarries, and make sure the stone gets to the sculptors.  I chip in more than a little mining myself, too.
+q1~Do you have any idea what Ahkmou was working on?
+r1~Ah... so you heard about the liquid-cored balls.  That was a fiasco.|Yes, I do know about them, but I don't know much more than that.  Ahkmou took a piece of stone from the quarry, paid me for it, and left.  He must have done all the work on his own, though, because none of the sculptors told me about making a custom ball for him.|(Why does that matter?  He has tons of balls over at his stand.)|True, Huki, but they are all the same style, purchased in bulk.  A hollow prototype ball would certainly attract attention by people--even if it WAS Ahkmou.|However, contacts in the Onu-Koro Mining Guild tell me that Ahkmou harvested some lava headed to the North March from one of their pumps.  With permission, of course, but no reason--my guess is that he 'glued' the ball together with it.  You'll have to ask a guardsman for more.
+q2~Why is that one quarry abandoned?
+r2~Ohhhh.  Nasty place...  besides being overly dark and foul, the place has a reputation for cave-ins.  Last time it was opened it fell in almost immediately.  I nearly lost workers to that quake.|The six mines in there form a tunnel network that we could ferry stone quickly through, and we were able to link it up with the Onu-Wahi network at one point.|All sealed off long ago, though I still have the keys.  Rumor has it a Jaga moved in a couple years ago, but everyone's too afraid to look.  Superstitous ninnies...
+q3~Goodbye.  I'll find the Captain next.
+r3~Say hi to the Captain for me!
+bye~r3
+addCmds~if self.state=='r3' and self.part==1: scenes.Midak.editWords("midak2.txt", player)

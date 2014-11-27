@@ -1,0 +1,9 @@
+o~Statuettes!  Souveniers!  High-quality Po-Koroan craftsmanship!|Oh, hello, Huki!  These Onu-Matoran have no taste whatsoever.
+m~See anything you like?
+q0~Who are you?
+q1~
+q2~
+q3~Goodbye.
+r0~Ah yes, my name Dashka.  High-quality Po-Koroan carver.  Trapped with all these musty ferrets called Miners who wouldn't know a sculpture from a brick.|Hold on... one moment, Huki...|YOU!  YES, YOU, ONU-MATORAN!  COME OVER HERE AND GET STATUE!  YOU KNOW YOU WANT IT!|...Really, no sense of art at all.
+r3~Farewell, Huki!
+bye~r3

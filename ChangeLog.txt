@@ -1,0 +1,33 @@
+Changes from AP 6.3
+
+<<APtalk>>
+
+Added this changelog.
+
+<<APPLE>>
+
+Added spikes that can point in 4 directions.  These reduce your health, so don't step on them.
+
+Added health-restoring berries.  Each berry gives 10 health.
+
+Added falling damage and more realistic gravity.
+
+<<WHAT TO ADD NEXT>>
+
+Combination locks.  (This I could pass)
+
+A delHotSpot() and delNPC() function to the Scene class.
+
+Enemies.
+
+Weapons to combat said enemies.
+
+A Merchant class to buy things from, with Dashka's gift of 25 widgets.
+
+Fix that cheat where you can roll and bounce up a wall without limits... *AHEM*
+
+The Megasphere!
+
+And more of Mata Nui to explore.
+
+-Jaga

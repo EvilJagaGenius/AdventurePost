@@ -1,0 +1,9 @@
+o~Fresh fish!  Imported from Ga-Wahi!  Get your fresh fish here!  Fishing poles, fishing nets, fishing bait!|...Oh, hello.  What's a Po-Matoran doing so far from home?
+m~Is there anything you need?
+q0~Who are you?
+q1~I guess I don't need anything, thanks.
+q2~
+q3~
+r0~My name is Kailani.  I'm selling fish from my home, Ga-Koro, but I'm also a crafter.  That is, I make many things for others.  Like the fishing poles.  They're my favorites.|There was an... incident... with a Rahi over there, so I thought I would come to Onu-Koro to relax a little.
+r1~Goodbye, stranger.
+bye~r1

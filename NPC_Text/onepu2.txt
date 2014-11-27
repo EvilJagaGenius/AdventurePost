@@ -1,0 +1,3 @@
+o~Strange.  Matoran dissapearing?  None of that around here.  Not unless some fool forgets to bring his lightstone in the tunnels.  Still, I'll keep my eyes open.  You should take that letter down to Jala, too.|
+bye~none
+addCmds~if self.part == 1: self.editWords('onepu.txt', player); self.state = 'm'; self.part = 0

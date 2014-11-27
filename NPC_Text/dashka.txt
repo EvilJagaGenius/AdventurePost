@@ -1,0 +1,12 @@
+o~Statuettes!  Souveniers!  High-quality Po-Koroan craftsmanship!|Oh, hello, Huki!  These Onu-Matoran have no taste whatsoever.
+m~See anything you like?
+q0~Who are you?
+q1~Your voice sounds tired.
+q2~Sure, I'll get you some water.
+q3~Goodbye.
+r0~Ah yes, my name Dashka.  High-quality Po-Koroan carver.  Trapped with all these musty ferrets called Miners who wouldn't know a sculpture from a brick.|Hold on... one moment, Huki...|YOU!  YES, YOU, ONU-MATORAN!  COME OVER HERE AND GET STATUE!  YOU KNOW YOU WANT IT!|...Really, no sense of art at all.
+r1~Ah, that because my mind is fatigued by this blatant rejection of the Arts.  I would go home if only I could sell these.|But if you say so...  I could use drink of water.  Fresh water, from stream, but...|Water has little thingies inside it that do bad things to sensitive constitution.  Water no sensitive.|If you can somehow pure-fy water, by fire, maybe, you can get rid of thingies and I drink water.
+r3~Farewell, Huki!
+r2~Thank you, Huki, thank you!  Take this bottle and fill it up at stream.  Then, find way to heat it up.  Bring it back to me and I give you much widgets, yah?  Of course yah.
+bye~r3
+addCmds~if (self.state=='r2') and (self.part==1): self.giveStuff(player, scenes.Empty_Bottle); self.editWords('dashka2.txt', player)

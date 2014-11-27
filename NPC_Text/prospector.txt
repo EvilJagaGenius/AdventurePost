@@ -1,0 +1,9 @@
+o~Hello there, stranger.  I take it you want to have a tour of the mines?  Might be a little tough.  It would take years to go through all the tunnels.
+m~Anything you need, stranger?
+q0~Who are you?
+q1~Goodbye.
+q2~
+q3~
+r0~I'm the chief Prospector for Mine Shaft 8.  We dig protodermis and stone here.
+r1~Look out for Rahi in the tunnels!  It's dark down here!
+bye~r1

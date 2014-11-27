@@ -1,0 +1,9 @@
+o~Hello, Huki!|I did not expect you would return to our undercity so soon after the Koli match.  Congratulations, by the way.
+m~Is there anything you wish to know?
+q0~Who are you?
+q1~Goodbye.
+q2~
+q3~
+r0~I am Turaga Whenua, the ruler of this realm.  The Matoran here are miners and inventors, building machines to improve the lives of others throughout the island.|Because Onu-Wahi is not constrained to one portion of the island, but instead runs beneath all of it, top-dwelling Matoran come from everywhere to Onu-Koro.
+r1~May Onua be with you, Huki.
+bye~r1

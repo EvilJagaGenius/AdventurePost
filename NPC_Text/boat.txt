@@ -1,0 +1,11 @@
+o~This is the Po-Wahi Ferry Boat.|Unfortunately, you cannot ride the boat at the moment.
+m~Is there anything you'd like to know about Adventure Posts?
+q0~Why can't I ride the boat?
+q1~What on earth is Pekka talking about?
+q2~Tell me more about what's going on.
+q3~Goodbye.
+r0~Mainly because the author of the game is lazy and hasn't designed the Ga-Wahi or Ta-Wahi areas yet.
+r1~Pekka is a Matoran, an inhabitant of the island of Mata Nui.  You are currently on Mata Nui now.|Po-Koro is one of six Matoran villages throughout the island.  Po-Wahi is this big, desert region you're in now.|Rahi are monsterous creatures, ranging in size from small spiders to giant cats easily five times Pekka's size.|Koli is a soccer-like game played by the Matoran, the main differences being that you play with four teams instead of two, and with smooth rocks called Koli balls instead of soccer balls.
+r2~Some lingo you'll find:  Kanohi masks are worn by nearly every living thing on Mata Nui.|A particularly nasty Rahi native to Po-Wahi is the Nui-Jaga scorpion, typically shortened to Jaga.|All of Mata Nui is under attack by Makuta, the spirit of destruction.  He causes The Madness, infecting the masks of Rahi and by doing so forces them to serve him.  The details of this technology are unknown, but infected masks can be recognized by a rusty, scummy appearance.|(Don't even think of putting one on.)|Anyway, Po-Koro has its own militia to fight the Rahi, the Po-Koro Guard (nicknamed the Lonestars) under the lead of Captain Piatara.
+r3~Good luck... you'll need it!
+bye~r3

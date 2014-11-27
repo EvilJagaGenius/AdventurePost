@@ -1,0 +1,10 @@
+o~...
+m~Ride the crab?
+q0~Ride to Po-Wahi
+q1~Don't ride
+q2~
+q3~
+r0~
+r1~Come back anytime.
+bye~r1
+addCmds~if self.state=='r0' and self.part==0: self.teleport=scenes.stoneField5

@@ -1,0 +1,11 @@
+o~Hello, Huki!|I did not expect you would return to our undercity so soon after the Koli match.  Congratulations, by the way.
+m~Is there anything you wish to know?
+q0~Who are you?
+q1~Goodbye.
+q2~Have you seen Ahkmou?
+q3~Can you tell me about the Shadow Matoran?
+r0~I am Turaga Whenua, the ruler of this realm.  The Matoran here are miners and inventors, building machines to improve the lives of others throughout the island.|Because Onu-Wahi is not constrained to one portion of the island, but instead runs beneath all of it, top-dwelling Matoran come from everywhere to Onu-Koro.
+r1~May Onua be with you, Huki.
+r2~Now that you mention it...  He was the one with the black Rau and the pale eyes?|Yes.  I have seen him.  He actually is a good friend of Nuparu's.  They seem to get along well, tinkering with one another for hours on end.
+r3~Ah, Huki, you venture into realms better left unexplored.  But since you wish it, I will tell you of these fallen souls.|Shadow Matoran start out as normal Matoran--no different than you, or Onepu.  For reasons unknown, Makuta will choose them, and expose them to his shadows.|Then starts the Madness, the vile process by which the Rahi have become possessed by Makuta.  The Matoran's Kanohi will become infected, their strength will be sapped, and they will lose their memory.  This goes on for weeks until they fall unconcious, succumbing to the disease.|When they awake from the resulting coma, Makuta will have taken control of their mind.  They dissapear into the wilderness, but when they are seen again, they are many times stronger than they were before, and almost impervious to pain.|The engineers are trying to develop a way to disinfect the masks of the infected Matoran, but so far they have had little success, seeing as though they have no idea how the Madness grows on the cellular stage.
+bye~r1

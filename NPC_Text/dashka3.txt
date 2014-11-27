@@ -1,0 +1,8 @@
+o~Ah, thank you Huki!|(Chugs the bottle of water)|...Much better.  And here are widgets!
+m~
+q0~
+q1~
+q2~
+q3~
+addCmds~if self.part==3: self.giveStuff(player, scenes.Widgets); player.increase(scenes.Widgets, 25); self.editWords('dashka4.txt', player)
+bye~none

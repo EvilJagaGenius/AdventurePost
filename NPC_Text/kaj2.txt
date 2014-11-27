@@ -1,0 +1,12 @@
+o~(Hello!  Are you Kaj?)|I am, how may I help a Po-Matoran?|(Do you know anything about Ahkmou?)|Hmm... yes, the name rings a bell.  I think I can remember some.
+m~What do you want to know about Ahkmou?
+q0~Have you seen Ahkmou lately?
+q1~Have the crabs been acting strangely at all?
+q2~Which direction did Ahkmou come from?
+q3~Thanks.  Can I see the pump?
+r0~Another Po-Matoran like you?  Yes, I've seen him.|He asked if he could have some lava.  I told him to talk to Jala, since the lava is property of Ta-Koro, but he probably wouldn't mind.  He took the lava anyway and went off.
+r1~Now that you mention it, they did seem awfully friendly when Ahkmou was around.  I thought he had given them some bubble gum.|(Bubble gum?)|You've never seen an Ussal crab with bubble gum?|(I can't say that I remember...)|They love it.  Give one a chunk and it'll chew it for a week, blowing bubbles the size of your fist.  We actually have contests on which crab can blow the biggest bubbles.|(I'll have to remember that.)
+r2~The left, towards Onu-Koro.  I thought it was strange, but he may have been going to Kelati to borrow his crab.
+r3~Sure, hold on--
+bye~None
+addCmds~if self.state=='r3' and self.part==1: self.teleport=scenes.chap6_pt1

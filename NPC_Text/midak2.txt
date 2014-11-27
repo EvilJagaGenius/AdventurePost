@@ -1,0 +1,11 @@
+o~Howdy, Traveler!  Need a crab to Onu-Koro?  Awful dark in there, but Puku knows the way.
+m~I heard there's another Ussal race coming up.  Make sure you catch it if you're in town.
+q0~Who are you?
+r0~Name's Midak!  I own the taxi service out here, on the Onu-Po-Wahi Highway.  Lets me get a good tan out here.|Yeah, yeah, I've got no tan on me.  But it feels way nice, lemme tell ya.|And this here's Puku!  Retired racing crab, used to belong to none other than Onepu himself.  Took the title three times with him.  She's a bit long in the tooth now, but still fast.
+q1~Do you know Pekka?
+r1~Yeah, I know Pekka.  One awesome dude.  One day we found a Sand Tarakava, and he KO'd the Rahi with two roundhouse kicks.|A lot of the guys in the Po-Koro guard are like that, but none as good as Pekka.  You can trust him.|After he whacked the Rahi, he demasked it and tamed it, sorta, so it didn't attack the Matoran.  He let it loose, but the thing's really friendly.  If you ever see it.
+q2~Have you seen Ahkmou?
+r2~Ahkmou... name doesn't ring a bell.  What does he look like?|(Tan, with orange feet, a black Rau, and pale orange eyes.)|Hrm... no, can't say that I have.  Wassup with him?|(Nothing much, but he siphoned some lava out of a pump to build a Koli ball with.)|Huh... I'm not a Koli maniac myself, but I keep up with the times... Build, you say?  Aren't Koli balls sculpted?|(This was a prototype, a liquid-cored experimental.)|Hold on, let me get out my book... (He pulls out a bulging black notepad filled with odd math equations, starts scribbling)|...Odd.  The thing would be incredibly fragile, but the liquid would help it retain momentum more, in layman's terms... a more jelly core would keep it together.|Hey, is that all the commotion I heard about that exploding Koli ball last week?  Cool... Ya know, if ya find one lying around, can you bring it to me?|But I don't know anything about lava leeching.  Should ask someone in Onu-Koro about it, though.
+q3~Goodbye.
+r3~Bye now!
+bye~r3

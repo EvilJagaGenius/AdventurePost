@@ -1,0 +1,11 @@
+o~Eh?  Who's there?  The Sphere's not open yet.
+m~Whaddya want?
+q0~The Sphere?
+q1~Why can't I come in?
+q2~Why is the door shut?
+q3~Goodbye.
+r0~The Megasphere!  Big planetarium!  And it's not done yet, so go away!
+r1~Because we're busy.  Putting in fresh lightstones and updating the constellations.
+r2~Light pollution.  We can't risk the light from outside throwing off our computers.
+r3~Don't come back until we're done!
+bye~r3

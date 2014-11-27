@@ -1,0 +1,27 @@
+Adventure Posts
+
+Version 6.4
+
+Created by evil_jaga_genius
+
+Credit to:
+
+Nuparu77.  The taWahi- scenes and Nuparu's lab are from his game, MNOLG: The Bohrok Swarms.  Find it at: http://www.bzpower.com/board/topic/8946-mnolg-the-bohrok-swarms/
+
+Turakii #1 Lavasurfer, writer of the "Tentacles" story.  Kailani mentions it as an "incident" back in Ga-Wahi.  Read it here:
+http://biomediaproject.com/bmp/files/txt/Tentacles.pdf
+
+Al Sweigart.  His Pyganim module is used in the platformer for this game.  I also highly recommend his Invent with Python books.
+
+The fortress- scenes were created with Quake 2, QOOLE, and the Dawn of Darkness mod.
+
+The BioMedia Project.  Without it, no one would know this game existed.
+
+And thanks to my sister, for teaching me Python.
+
+
+To the glory of God
+
+-Jaga
+
+(press ENTER to exit)

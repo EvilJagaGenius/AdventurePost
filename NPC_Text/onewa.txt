@@ -1,0 +1,12 @@
+o~Hail, adventurer!
+m~I trust your travels are going well.
+q0~How do you know me?
+r0~How do I... Huki, how could anyone not know you?  You're the Koli champion, Po-Wahi's hero!|I should hope I know you... ask anyone in town, they will tell you the same.|But my apologies, I heard from Whenua you fell slightly ill in Onu-Koro.  That may have disturbed your memory.
+q1~My travels?
+r1~Why, yes, you just went on a journey to Onu-Wahi as they were setting up a Koli field.  You played a game against the Onu-Wahi team--well played, by the way.  Hafu was raving about it all last week.|From Onu-Wahi, you ventured to Ta-Koro, and later Ga-Wahi.  Pekka said you were asleep on the boat back to Po-Wahi.
+q2~Who are you?
+r2~I am Onewa, Turaga of the village of Po-Koro.  The Matoran here are master carvers, and their work is the envy of Mata Nui.
+q3~Goodbye.
+r3~I wish you the speed of Pohatu, adventurer.
+bye~r3
+addCmds~if self.state == 'r3' and self.part == 1: scenes.Onewa.editWords('onewa2.txt', player)

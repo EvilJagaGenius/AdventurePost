@@ -1,0 +1,10 @@
+o~Oh.  You're back.  Did you bring any widgets this time?
+m~Just spit it out already, Huki, since you seem to be intent on standing there like a mute lunatic.  And by the way, is the whole amnesia charade over yet?
+q0~I know about the Koli balls.
+r0~Yes, yes.  The *Koli* ball.  What about it?|(I'm kinof sorry about what happened)|Oh.  He is losing his mind.  I should have guessed.|As for the ball, it was a prototype, nothing more.  Yet.|And why do you care?  It's not like I give away my prized inventions to guys like you.  That's why I let Hafu test it... he has some appreciation for my work.|Hence, run away, Huki.  You are not getting a Koli ball from me.
+q1~What else are you working on?
+r1~(He bursts into laughter, flashes you a dirty grin)|Oh, that's just too good.  Just too rich, Hafu might say... You know, he might go on, like this: 'The great Huki, daring to ask a lowly mortal his thoughts for a mere penny?'|Ya might wanna leave now, Hux.  Before said inventions nail you in the face.
+q2~Goodbye.
+r2~(Turns away, humming)
+q3~
+bye~r2

@@ -1,0 +1,11 @@
+o~Welcome to Onu-Koro, adventurer.
+m~How can I help you?
+q0~Who are you?
+q1~What is in Onu-Koro?
+q2~Goodbye.
+q3~Have you seen Ahkmou?
+r0~My name is Cmd. Damek, Ussalry Class 2 Guard, Section 2.|Basically, I'm in charge of most of the guards in and around town, and I make sure nothing nasty comes in from the Po-Wahi highway.  I take note of every living thing that comes through this here door.|If that creeps you out a little, well, I suppose you have good reason to.  But thankfully I haven't seen anything more dangerous than a couple of stone rats.
+r1~Onu-Koro the town is a center of trade and science.  The island's best engineering labs are kept here, and at the market you can find Matoran from all corners of the island.  It really is a beautiful place.|Stretching out from here is the glorious Great Mine.  Two miles of a shaft going straight down, with Matoran harvesting lightstones, jewels and Protodermis from every level.|We actually have dedicated lighstone mines.  They're right next to pumps that supply molten lava from Ta-Koro to the guardsmen in the Northern March.|There's also the Megasphere, the greatest combination of art and technology ever built.  You sit in a chair, and thousands of lighstones arrange themselves in constellations on the ceiling--you can actually reach out, and touch the representation of a galaxy.|The constellations are constantly updated by computers, so you can also make your own star systems.
+r2~Enjoy the sights!
+r3~No... well, I haven't seen him come through this gate.  I have seen him around town occaisionally, though.  And, of course, I heard about his Koli balls.
+bye~r2

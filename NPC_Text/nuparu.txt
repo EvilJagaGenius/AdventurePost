@@ -1,0 +1,10 @@
+o~Well?  What do you two want from me?
+m~Why can't anybody just leave me alone...
+q0~Hey, can you come with us to Ko-Wahi?
+q1~We're going to head out, then.
+q2~
+q3~
+r0~Well... I SUPPOSE so...|(Damek)  Then let's get going.  Pack your bags for fixing a lava pipe.|(Nuparu)  A lava pipe?  In Ko-Wahi?  How are we getting there?|(Damek)  If you come with us, you'll find out.|(Nuparu)  Okay, working on it...
+r1~I'm coming, I'm coming!
+bye~r1
+addCmds~if self.state=='r1' and self.part==1: player.addCompanion(scenes.cNuparu)

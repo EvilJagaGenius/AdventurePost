@@ -1,0 +1,13 @@
+o~Hello, Huki.
+m~And pray tell, just how might I help the great Koli champion today?  My next shipment of Koli balls is expected to arrive soon.
+q0~Who are you?
+r0~My name is Ahkmou.  I'm an inventor, and I sell my wares here at the bazaar.|I was hoping you would have remembered that... after all, I was the one who engineered those Koli balls you took to Onu-Koro.|How did that match go?  I heard you kicked some brick over there... strange that no one told me.  At least not to my face.
+q1~What can I buy?
+r1~Seeing as though you have no money, nothing at the moment.  Come back when you can give me widgets instead of another Koli victory.|Go trumpting your win somewhere else, Huki.  You're not getting anything from me today.
+q2~My, you're edgy today.
+r2~Am I now?  And here I was, thinking I might actually be considered normal for once.  Yeah, right.|Never forget, Huki--all these insults piled up for these past few decades--I remember them.  I remember every last one.  I even remember you saying you could win that match without my help.|Do you remember that, Huki?  That's right.  I should have thought so myself.  Of course you never did.
+q3~Goodbye...
+r3~(Turns away, under his breath)...and they call me the evil genius...
+bye~r3
+
+

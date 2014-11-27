@@ -1,0 +1,12 @@
+o~Hello there, stranger.  I take it you want to have a tour of the mines?  Might be a little tough.  It would take years to go through all the tunnels.
+m~Anything you need, stranger?
+q0~Who are you?
+q1~Goodbye.
+q2~What's going on?
+q3~Are there Kofu-Jaga in the mine?
+r0~I'm the chief Prospector for Mine Shaft 8.  We dig for protodermis and stone here.
+r1~Look out for Rahi in the tunnels!  It's dark down here!
+r2~Huh?  Whaddya talking about?|(Someone being armed and dangerous!  Onepu told me to come here.)|What?  No armed and dangerous people here, not unless... hold on...|Tehutti?  Damek?  I thought the Ussalry wasn't needed anymore... what's going on?|
+r3~Oh yes.  Nests upon nests, especially down further in.  It's hotter down there, so they can thrive.  As we've been digging, we've had to bring in Ussalry teams in to defend the miners, if we can't detect the nests.|Lately, though, we've directed our attentions to digging a new shaft, so all the workers are over at that site.  The Ussalry isn't needed right now, so they're all back in Onu-Koro.
+bye~r1
+addCmds~if self.state=='r2' and self.part==4: self.teleport=scenes.chap3

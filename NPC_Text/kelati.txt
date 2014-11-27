@@ -1,0 +1,11 @@
+o~Goo'day, mate.  What's a desert dweller like your lonesome doing down here?|Ah, a tourist, eh?  Can't blame you.  Love this place, I do.
+m~So, mate, what brings you to Onu-Koro?
+q0~Who are you?
+q1~Goodbye.
+q2~Can I ride your crab to Ta-Koro?
+q3~
+r0~Name's Kelati.  *Lieutenant* Kelati, Ussalry Class 2 Guard, Section 3.  Over all the Ussalry digging in the Le-Koro Highway and the Great Mine.|The Le-Koro Highway is still being built, some good men they've got over there.  Taipu's one of them, strong and stubborn as a Mahi goat.|The real pain, though, is that they've got a real bad lot too,  do nothing but complain they don't have enough people and tools.|And light!  They say they don't have enough bloomin' light!  They're Onu-Matoran, for crying out loud!|But... they're a right mess, you know.  Guys in the Lightstone mines are much better.  Problem is, they're not under my authority, they're under Kaj, and Kaj says he's doing everything he can to give them good Lightstones and can't spare any diggers.
+r2~Yes siree.  Just hop on and she'll come back on her own.  Say 'lo to Kaj for me, he's on that road, near the lava pumps.|
+r1~Fare thee well, chum!
+bye~r1
+addCmds~if self.state=='r2' and self.part==1: self.teleport=scenes.taKoro2
