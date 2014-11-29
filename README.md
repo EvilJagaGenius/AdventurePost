@@ -11,6 +11,9 @@ Use the number keys to enter a combination.  Use BACKSPACE to erase part of your
 ## NPC's
 Click on the red arrow to read more of what they're saying, click on one of the small boxes at the bottom of the screen to ask them a question.
 
+## COMPANIONS
+Click on the outline of a Matoran in the top-right corner to see what companions are traveling with you.  If you have more than one companion, click on the little arrows to the side of your companion's face to view the next one.  Click on the face to see what they have to say, click on the text box that shows up to read more.  When you're done, click their face again.
+
 ## SCENES
 Move your mouse over the scene.  If it turns into a red arrow, click to move to a new scene.  If it turns into a grey circle, with an arrow inside it, click to turn around.  If it turns into a red speech bubble, it means there's a NPC you can talk to by clicking the bubble.  If there's a red hand on the screen, click to pick up an item.
 
