@@ -37,7 +37,7 @@ def imgLoad(imgFile, mode):
     else:
         folder = None
     if folder != None:
-        filePath = os.path.join(folder, imgFile)
+        filePath = os.path.join('..', 'Resources', folder, imgFile)
         returnFile = pygame.image.load(filePath)
         return returnFile
 
@@ -49,7 +49,7 @@ def txtLoad(txtFile, mode):
     elif mode == 's':
         folder = 'SaveGames'
     if folder != None:
-        filePath = os.path.join(folder, txtFile)
+        filePath = os.path.join('..', 'Resources', folder, txtFile)
         return filePath
 
 class Companion:
@@ -293,7 +293,7 @@ def newGame():
 def loadGame():
     games = []
     mousePos = pygame.mouse.get_pos()
-    for i in os.listdir('SaveGames'):
+    for i in os.listdir(os.path.join('..', 'Resources', 'SaveGames')):
         if not i.endswith('edits.txt'):
             if len(games) < 8:
                 games.append(i)
