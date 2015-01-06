@@ -247,22 +247,22 @@ Bomb = Lock('337','Bomb')
 elevatorLock = Lock('5887930', 'elevatorLock')
 
 #APPLE levels
-Lvl1 = Level('Level1.bmp', 'Lvl1', 'Img2.png')
+Lvl1 = Level('Level1.bmp', 'Lvl1', 'Level1.txt', 'Img2.png')
 Lvl1.addVoice(Voice(pygame.Rect(40,360,40,40), "Okay, show me what you got.  Start free-running.  I'll see you at the exit.", pygame.Rect(240,310,100,100)))
 Lvl1.addVoice(Voice(pygame.Rect(290,300,40,40), "Try bouncing up between these pillars by pressing SPACE.", pygame.Rect(410,150,40,40)))
 Lvl1.addVoice(Voice(pygame.Rect(250,110,40,40), "Good!  Now wall-run across these plaid blocks (press SHIFT and SPACE).", pygame.Rect(190,70,60,200)))
 Lvl1.addVoice(Voice(pygame.Rect(680,200,40,40), "Punch these checkered blocks apart by pressing F.", pygame.Rect(0,0,0,0)))
 
-Lvl2 = Level('Level2.bmp', 'Lvl2', 'Img2.png', POWAHI)
+Lvl2 = Level('Level2.bmp', 'Lvl2', 'Level2.txt', 'Img2.png', POWAHI)
 Lvl2.addMonster(NuiJagaP('r', (380,743)))
 #Ah, yes, where did that Jaga come from, Piatara?  HMMMM???
 
-Lvl3 = Level('Level3.bmp', 'Lvl3', 'OnuTunnel17.png', ONUWAHI)
+Lvl3 = Level('Level3.bmp', 'Lvl3', 'Level3.txt', 'OnuTunnel17.png', ONUWAHI)
 Lvl3.addMonster(CCGPunk((310,70)))
 
-Lvl4 = Level('Level4.bmp', 'Lvl4', 'OnuTunnel46.png', KOWAHI)
+Lvl4 = Level('Level4.bmp', 'Lvl4', 'Level4.txt', 'OnuTunnel46.png', KOWAHI)
 
-Lvl5 = Level('Level5.bmp', 'Lvl5', 'Fortress2.png', KOWAHI)
+Lvl5 = Level('Level5.bmp', 'Lvl5', 'Level5.txt', 'Fortress2.png', KOWAHI)
 
 #CutChapters, in chronological order
 chap1 = CutChapter('chapter1.txt', 'chap1')

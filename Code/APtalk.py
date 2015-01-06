@@ -48,6 +48,8 @@ def txtLoad(txtFile, mode):
         folder = 'Chapters'
     elif mode == 's':
         folder = 'SaveGames'
+    elif mode == 'a':
+        folder = 'APPLElvls'
     if folder != None:
         filePath = os.path.join('..', 'Resources', folder, txtFile)
         return filePath
@@ -803,7 +805,7 @@ class exitBlock:
         self.rect = rect
 
 class Level: #Platformer levels.  Tap 'E' to see the FPS you're running at, should average at 60
-    def __init__(self, imgName, name, bkg=None, colorScheme=POWAHI):
+    def __init__(self, imgName, name, txtFile, bkg=None, colorScheme=POWAHI):
         '''Takes a bitmap (.bmp) image and converts it into a level.'''
         if bkg != None:
             self.bkg = imgLoad(bkg, 's').convert()
@@ -852,6 +854,25 @@ class Level: #Platformer levels.  Tap 'E' to see the FPS you're running at, shou
         darker.fill((0,0,0))
         darker.set_alpha(50)
         self.bkg.blit(darker, (0,0))
+        self.txtFile = txtLoad(txtFile, 'a')
+
+    def LoadTxtFile(self):
+        '''Shorthand:
++block
++monster
++voice
+
+do exactly what you'd think they'd do.
+        '''
+        for line in self.txtFile:
+            line = line.strip()
+            cmdList = line.split('|')
+            if cmdList[0] == '+block':
+                pass
+            if cmdList[0] == '+monster':
+                self.beasties.append(cmdList[1]((cmdList[2], cmdList[3]), cmdList[4], cmdList[5]))
+            if cmdList[0] == '+voice':
+                pass
 
     def addMonster(self, monster):
         self.beasties.append(monster)
