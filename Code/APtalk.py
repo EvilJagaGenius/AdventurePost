@@ -621,7 +621,7 @@ class NuiJagaP:
 class CCGPunk:
     #Kylae the Shadow Matoran, trying to blow up the Great Mine
     #The CCG is a hitscan weapon
-    def __init__(self, coord):
+    def __init__(self, coord, junkDirection, junkMood):
         self.spawn = coord
         self.spriteR = imgLoad('Kylae.bmp', 'a').convert()
         self.spriteR.set_colorkey((255,255,255))
@@ -856,7 +856,7 @@ class Level: #Platformer levels.  Tap 'E' to see the FPS you're running at, shou
         self.bkg.blit(darker, (0,0))
         self.txtFile = txtLoad(txtFile, 'a')
 
-    def LoadTxtFile(self):
+    def loadTxtFile(self):
         '''Shorthand:
 +block
 +monster
@@ -864,13 +864,13 @@ class Level: #Platformer levels.  Tap 'E' to see the FPS you're running at, shou
 
 do exactly what you'd think they'd do.
         '''
-        for line in self.txtFile:
+        for line in open(self.txtFile, 'r'):
             line = line.strip()
             cmdList = line.split('|')
             if cmdList[0] == '+block':
                 pass
             if cmdList[0] == '+monster':
-                self.beasties.append(cmdList[1]((cmdList[2], cmdList[3]), cmdList[4], cmdList[5]))
+                self.beasties.append(eval(cmdList[1])((int(cmdList[2]), int(cmdList[3])), cmdList[4], bool(cmdList[5])))
             if cmdList[0] == '+voice':
                 pass
 
@@ -903,6 +903,7 @@ do exactly what you'd think they'd do.
     def play(self, player, junkCoord):
         #Setting variables, blah blah blah
         #I actually made a level and saved the game so I can't leave until I finish work on the platformer
+        self.loadTxtFile()
         
         
         playerHealth = 100

@@ -258,7 +258,6 @@ Lvl2.addMonster(NuiJagaP('r', (380,743)))
 #Ah, yes, where did that Jaga come from, Piatara?  HMMMM???
 
 Lvl3 = Level('Level3.bmp', 'Lvl3', 'Level3.txt', 'OnuTunnel17.png', ONUWAHI)
-Lvl3.addMonster(CCGPunk((310,70)))
 
 Lvl4 = Level('Level4.bmp', 'Lvl4', 'Level4.txt', 'OnuTunnel46.png', KOWAHI)
 
