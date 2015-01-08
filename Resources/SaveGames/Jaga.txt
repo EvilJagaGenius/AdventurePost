@@ -1,0 +1,2 @@
+scenes.Lvl2
+Player("Jaga",0,[])

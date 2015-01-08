@@ -563,7 +563,7 @@ class NuiJagaP:
     #My usernamesake the Jaga
     #Has a sprite, can move from side to side.
     #NTS: Give it stinging and goober-throwing attacks.
-    def __init__(self, direction, coord, angry=False):
+    def __init__(self, coord, direction, angry=False):
         self.spawn = coord
         self.startDirection = direction
         self.startMood = angry

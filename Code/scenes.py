@@ -254,8 +254,6 @@ Lvl1.addVoice(Voice(pygame.Rect(250,110,40,40), "Good!  Now wall-run across thes
 Lvl1.addVoice(Voice(pygame.Rect(680,200,40,40), "Punch these checkered blocks apart by pressing F.", pygame.Rect(0,0,0,0)))
 
 Lvl2 = Level('Level2.bmp', 'Lvl2', 'Level2.txt', 'Img2.png', POWAHI)
-Lvl2.addMonster(NuiJagaP('r', (380,743)))
-#Ah, yes, where did that Jaga come from, Piatara?  HMMMM???
 
 Lvl3 = Level('Level3.bmp', 'Lvl3', 'Level3.txt', 'OnuTunnel17.png', ONUWAHI)
 
