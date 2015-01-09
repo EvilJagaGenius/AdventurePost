@@ -759,7 +759,7 @@ class Meelee:
 class Block:
     def __init__(self, rect, colorScheme=POWAHI):
         '''These are the blocks that compose the Level they are in.'''
-        self.sprite = imgLoad('BlockSprite.bmp', 'a').convert()
+        self.sprite = pygame.transform.scale(imgLoad('BlockSprite.bmp', 'a'), (rect.width, rect.height)).convert()
         self.type = 's'
         for x in range(self.sprite.get_width()):
             for y in range(self.sprite.get_height()):
@@ -868,7 +868,7 @@ do exactly what you'd think they'd do.
             line = line.strip()
             cmdList = line.split('|')
             if cmdList[0] == '+block':
-                pass
+                self.blocks.append(Block(pygame.Rect(int(cmdList[1]), int(cmdList[2]), int(cmdList[3]), int(cmdList[4])), self.colorScheme))
             if cmdList[0] == '+monster':
                 self.beasties.append(eval(cmdList[1])((int(cmdList[2]), int(cmdList[3])), cmdList[4], bool(cmdList[5])))
             if cmdList[0] == '+voice':
