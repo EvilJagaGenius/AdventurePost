@@ -3,16 +3,10 @@
 #v.6, Like a ninja kick
 #To the glory of God
 
-#Activate the scene pack
-import scenes
-from scenes import *
-
 #Imports and stuff
 import sys, pygame, pyganim, os
 from pygame import *
 pygame.init()
-
-
 
 #Color schemes for APPLE levels.  POWAHI is default.
 POWAHI = [(185, 122, 87), (239,228,176)]
@@ -411,7 +405,7 @@ class Lock:
             window.blit(storyTxt.render(comboString, True, (255,255,255)), (0,50))
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    DTquit(player)
+                    DTquit(player, self.name)
                 if event.type == KEYDOWN:
                     if event.key == K_LSHIFT or event.key == K_RSHIFT:
                         shiftOn = True
@@ -468,9 +462,27 @@ class CutChapter:
         filePath = txtLoad(txtFile, 'c')
         self.txt = open(filePath, 'r')
         #Code will create a surface containing the story's text
+        self.endScene = None
+                            
+        #End story code
+        self.addCmds = addCmds
+        self.name = 'scenes.' + name
+
+
+    def extend(self):
+        #Extends self.storySurf by 18 pixels down.
+        height = self.storySurf.get_height()
+        saveSurf = self.storySurf.copy()
+        self.storySurf = pygame.Surface((600, height+18))
+        self.storySurf.fill((0,0,0))
+        self.storySurf.blit(saveSurf, (0,0))
+
+    def addTarget(self, target):
+        self.endScene = target
+
+    def play(self, player, junkCoord):
         self.storySurf = pygame.Surface((600, 400))
         self.storySurf.fill((0,0,0))
-        self.endScene = None
         x = 0
         y = 0
         for pg in self.txt: #pg for paragraph, paragraphs will look like they're all on one line in the .txt file
@@ -503,24 +515,7 @@ class CutChapter:
                         y += 18
                         self.storySurf.blit(storyTxt.render(word, True, (255,255,255)), (x,y))
                         x += storyTxt.size(word)[0] + 5
-                    
-        #End story code
-        self.addCmds = addCmds
-        self.name = 'scenes.' + name
 
-
-    def extend(self):
-        #Extends self.storySurf by 18 pixels down.
-        height = self.storySurf.get_height()
-        saveSurf = self.storySurf.copy()
-        self.storySurf = pygame.Surface((600, height+18))
-        self.storySurf.fill((0,0,0))
-        self.storySurf.blit(saveSurf, (0,0))
-
-    def addTarget(self, target):
-        self.endScene = target
-
-    def play(self, player, junkCoord):
         viewPoint = 0
         viewRect = pygame.Rect(0,0,600,400)
         viewSurf = pygame.Surface((0,0))
@@ -529,7 +524,7 @@ class CutChapter:
             moveDown = False
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    DTquit(player)
+                    DTquit(player, self.name)
                 if event.type == KEYUP:
                     if event.key == K_RETURN:
                         exec(self.addCmds)
@@ -984,7 +979,7 @@ do exactly what you'd think they'd do.
         
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    DTquit(player)
+                    DTquit(player, self.name)
                 if event.type == KEYDOWN:
                     if event.key == K_LEFT:
                         leftPress = True
@@ -1665,7 +1660,7 @@ class NPC:
         pygame.draw.line(window, (0,0,0), (0, WY-50), (WX, WY-50))
         pygame.draw.line(window, (0,0,0), (WX//2, WY-50), (WX//2, WY))
         
-    def talk(self, player, junkCoord):
+    def talk(self, player, junkCoord, currentScene):
         self.state = 'o'
         self.part = 0
         blitArrow = False
@@ -1702,7 +1697,7 @@ class NPC:
             clickedOnArrow = False
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    DTquit(player)
+                    DTquit(player, currentScene)
                 if event.type == MOUSEBUTTONUP:
                     if arrowRect.collidepoint(event.pos):
                         clickedOnArrow = True
@@ -1816,7 +1811,7 @@ class Scene: #Note:  Tap 'E' to see what scene you're in
         
     def play(self, player, mousePos):
         '''Executes a while True: game loop that will display a background, pickup items, and NPC's.
-        Will add the pickup to the inventory if it is clicked on, talk to the NPC if it is clicked on, and go to another scene if the hotspots are clicked on.''' 
+        Will add the pickup to the inventory if it is clicked on, talk to the NPC if it is clicked on, and go to another scene if the hotspots are clicked on.'''
         dispPack = False
         dispPals = False
         editMode = False
@@ -1831,7 +1826,7 @@ class Scene: #Note:  Tap 'E' to see what scene you're in
             mousePos = pygame.mouse.get_pos()
             for i in events:
                 if i.type == QUIT:
-                    DTquit(player)
+                    DTquit(player, self.name)
                 if i.type == MOUSEBUTTONUP:
                     if i.button == 1:
                         if inventButton1.collidepoint(i.pos):
@@ -1869,7 +1864,7 @@ class Scene: #Note:  Tap 'E' to see what scene you're in
             if dispPals:
                 player.dispCompanions(self.name)
             if editMode:
-                window.blit(sTxt.render(scenes.currentScene, True, (255,51,0)), (0,WY-40))
+                window.blit(sTxt.render(currentScene, True, (255,51,0)), (0,WY-40))
                 window.blit(sTxt.render(str(mousePos), True, (255,51,0)), (0,WY-50))
             for i in self.hotSpots:
                 if i[1].collidepoint(mousePos):
@@ -1980,8 +1975,8 @@ class Scene: #Note:  Tap 'E' to see what scene you're in
 
 
 
-def DTquit(player):
-    saveGame(player)
+def DTquit(player, currentScene):
+    saveGame(player, currentScene)
     #Long live the evil geniuses.
     if player.name == 'admin':
         pygame.quit()
@@ -1991,12 +1986,12 @@ def DTquit(player):
         sys.exit()
 
 
-def saveGame(player):
+def saveGame(player, currentScene):
     #Writes a Player() object and the name of the current scene to a text file
     if player.name != 'admin':
         stuffInPack = '['
         fileToWrite = open(txtLoad(player.name+'.txt','s'),'w')
-        fileToWrite.write(scenes.currentScene + '\n')
+        fileToWrite.write(currentScene + '\n')
         for i in player.stuff:
             stuffInPack += 'scenes.'+i.name+'.setAmt('+str(i.amt)+'),'
         stuffInPack += ']'
@@ -2056,4 +2051,21 @@ talkCursor.set_colorkey((0,255,0))
 pickupCursor = pygame.transform.scale(imgLoad('PickupCursor.bmp', 'ic').convert(), (25,25))
 pickupCursor.set_colorkey((0,255,0))
 
+#Activate the scene pack
+import scenes
+from scenes import *
 
+#DO NOT EDIT THE FOLLOWING CODE
+if scenes.finished:
+    data = intro()
+    #currentScene = data[0].name
+
+    if data[1].name != 'admin':
+        editFile = open(txtLoad(data[1].name + 'edits.txt', 's'), 'r')
+        player = data[1]
+        for line in editFile:
+            exec(line.strip())
+        editFile.close()
+    while True:
+        data = data[0].play(data[1], data[2])
+        #currentScene = data[0].name

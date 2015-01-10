@@ -1,2 +1,2 @@
-scenes.Lvl2
+scenes.startScene
 Player("Jaga",0,[])

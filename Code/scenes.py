@@ -9,6 +9,7 @@
 #Item images are to be in the ItemImgs folder, should look somewhat like a square, and be in .bmp format with an odd, solid color surrounding the item.
 #Platformer levels are in the APPLElvls folder, in .bmp format.
 #And try not to look at the combination lock doors, as that would be cheating...
+finished = False
 
 import APtalk
 from APtalk import *
@@ -1039,7 +1040,9 @@ regroup.addTarget(fortress15)
 Bomb.addTargets(chap4, Kylae_Duel_pt2)
 elevatorLock.addTargets(onuElevator2, onuElevator1)
 
-#DO NOT EDIT THE FOLLOWING CODE
+finished = True
+
+'''#DO NOT EDIT THE FOLLOWING CODE
 data = APtalk.intro()
 currentScene = data[0].name
 
@@ -1051,4 +1054,4 @@ if data[1].name != 'admin':
     editFile.close()
 while True:
     data = data[0].play(data[1], data[2])
-    currentScene = data[0].name
+    currentScene = data[0].name'''
