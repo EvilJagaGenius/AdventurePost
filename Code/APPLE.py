@@ -1,12 +1,17 @@
-#APPLE
-#TTG
-#NTS: Make levels based on BMP's and text files.  Then make a level editor.
+finished = False
+print('Loading APPLE')
+
+
+
+
+import APtalk
+from APtalk import *
 
 class NuiJagaP:
     #My usernamesake the Jaga
     #Has a sprite, can move from side to side.
     #NTS: Give it stinging and goober-throwing attacks.
-    def __init__(self, direction, coord, angry=False):
+    def __init__(self, coord, direction, angry=False):
         self.spawn = coord
         self.startDirection = direction
         self.startMood = angry
@@ -64,7 +69,7 @@ class NuiJagaP:
 class CCGPunk:
     #Kylae the Shadow Matoran, trying to blow up the Great Mine
     #The CCG is a hitscan weapon
-    def __init__(self, coord):
+    def __init__(self, coord, junkDirection, junkMood):
         self.spawn = coord
         self.spriteR = imgLoad('Kylae.bmp', 'a').convert()
         self.spriteR.set_colorkey((255,255,255))
@@ -202,7 +207,7 @@ class Meelee:
 class Block:
     def __init__(self, rect, colorScheme=POWAHI):
         '''These are the blocks that compose the Level they are in.'''
-        self.sprite = imgLoad('BlockSprite.bmp', 'a').convert()
+        self.sprite = pygame.transform.scale(imgLoad('BlockSprite.bmp', 'a'), (rect.width, rect.height)).convert()
         self.type = 's'
         for x in range(self.sprite.get_width()):
             for y in range(self.sprite.get_height()):
@@ -248,7 +253,7 @@ class exitBlock:
         self.rect = rect
 
 class Level: #Platformer levels.  Tap 'E' to see the FPS you're running at, should average at 60
-    def __init__(self, imgName, name, bkg=None, colorScheme=POWAHI):
+    def __init__(self, imgName, name, txtFile, bkg=None, colorScheme=POWAHI):
         '''Takes a bitmap (.bmp) image and converts it into a level.'''
         if bkg != None:
             self.bkg = imgLoad(bkg, 's').convert()
@@ -297,6 +302,25 @@ class Level: #Platformer levels.  Tap 'E' to see the FPS you're running at, shou
         darker.fill((0,0,0))
         darker.set_alpha(50)
         self.bkg.blit(darker, (0,0))
+        self.txtFile = txtLoad(txtFile, 'a')
+
+    def loadTxtFile(self):
+        '''Shorthand:
++block
++monster
++voice
+
+do exactly what you'd think they'd do.
+        '''
+        for line in open(self.txtFile, 'r'):
+            line = line.strip()
+            cmdList = line.split('|')
+            if cmdList[0] == '+block':
+                self.blocks.append(Block(pygame.Rect(int(cmdList[1]), int(cmdList[2]), int(cmdList[3]), int(cmdList[4])), self.colorScheme))
+            if cmdList[0] == '+monster':
+                self.beasties.append(eval(cmdList[1])((int(cmdList[2]), int(cmdList[3])), cmdList[4], bool(cmdList[5])))
+            if cmdList[0] == '+voice':
+                pass
 
     def addMonster(self, monster):
         self.beasties.append(monster)
@@ -327,6 +351,7 @@ class Level: #Platformer levels.  Tap 'E' to see the FPS you're running at, shou
     def play(self, player, junkCoord):
         #Setting variables, blah blah blah
         #I actually made a level and saved the game so I can't leave until I finish work on the platformer
+        self.loadTxtFile()
         
         
         playerHealth = 100
@@ -407,7 +432,7 @@ class Level: #Platformer levels.  Tap 'E' to see the FPS you're running at, shou
         
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    DTquit(player)
+                    DTquit(player, self.name)
                 if event.type == KEYDOWN:
                     if event.key == K_LEFT:
                         leftPress = True
@@ -764,3 +789,6 @@ class Level: #Platformer levels.  Tap 'E' to see the FPS you're running at, shou
                     self.healths.append(Health(10, (x*10, y*10)))
         self.lvlSurf = pygame.Surface((self.source.get_width()*10, self.source.get_height()*10))
 
+
+finished = True
+print('Done loading APPLE')

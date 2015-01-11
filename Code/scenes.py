@@ -1,7 +1,7 @@
 #Scene pack for APTalk
 #Includes: Po-Koro, all of MNOG Po-Wahi, Onu-Koro, Ta-Koro
 #TTG
-
+print('Loading scenes')
 
 #Some rules for editing:
 #Scene images are to be placed in the SceneImgs folder, in .png format.
@@ -1042,16 +1042,4 @@ elevatorLock.addTargets(onuElevator2, onuElevator1)
 
 finished = True
 
-'''#DO NOT EDIT THE FOLLOWING CODE
-data = APtalk.intro()
-currentScene = data[0].name
-
-if data[1].name != 'admin':
-    editFile = open(txtLoad(data[1].name + 'edits.txt', 's'), 'r')
-    player = data[1]
-    for line in editFile:
-        exec(line.strip())
-    editFile.close()
-while True:
-    data = data[0].play(data[1], data[2])
-    currentScene = data[0].name'''
+print('Done with scenes')
