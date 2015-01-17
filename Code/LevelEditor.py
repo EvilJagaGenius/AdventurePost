@@ -37,56 +37,32 @@ def txtLoad(txtFile, mode):
         filePath = os.path.join('..', 'Resources', folder, txtFile)
         return filePath
 
-def newLevel():
-    while True:
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
-    #Type in the level's name
-    pass
 
-def edit():
-    while True:
-        for event in pygame.event.get:
-            if event.type == QUIT:
-                DTQuit()
-            if event.type == MOUSEBUTTONUP:
-                if event.button == 1:
-                    clicked = False
-                    releaseClick = True
-                if event.button == 4:
-                    wheelDown = True
-                if event.button == 5:
-                    wheelUp = True
-            if event.type == MOUSEBUTTONDOWN:
-                if event.button = 1:
-                    clicked = True
-
-
-        pygame.display.update()
 
 class Level:
     def __init__(self, imgSource, txtSource):
         self.imgSource = imgLoad(imgSource, 'al')
         self.txtSource = open(txtLoad(txtSource, 'a'), 'r')
+        self.lvlX = self.imgSource.get_width()
+        self.lvlY = self.imgSource.get_height()
         self.blocks = []
         self.monsters = []
         self.healths = []
+        self.spikes = []
         self.start = (0,0)
         self.exit = (0,0)
         for x in self.imgSource.get_width():
             for y in self.imgSource.get_height():
                 if self.source.get_at((x, y)) == (0,0,0):
-                    self.blocks.append(Block(pygame.Rect(x*10, y*10, 10, 10), colorScheme))
+                    self.blocks.append(Block('Block', pygame.Rect(x*10, y*10, 10, 10)))
                 if self.source.get_at((x, y)) == (0,255,0):
                     self.start = (x*10, y*10)#Spawn point is the green pixel
                 if self.source.get_at((x, y)) == (0,0,255):#Exit is the blue pixel
                     self.exit = (x*10, y*10)
                 if self.source.get_at((x, y)) == (255,0,0):#Red pixels are wall-running surfaces
-                    self.Blocks.append(WallRunBlock(pygame.Rect(x*10, y*10, 10, 10), colorScheme))
+                    self.blocks.append(Block('WallRunBlock', pygame.Rect(x*10, y*10, 10, 10)))
                 if self.source.get_at((x, y)) == (100,0,0):#Dark red pixels are breakable
-                    self.breaks.append(BreakBlock(pygame.Rect(x*10, y*10, 10, 10), colorScheme))
+                    self.blocks.append(Block('BreakBlock', pygame.Rect(x*10, y*10, 10, 10)))
 
                 if self.source.get_at((x, y)) == (25,0,0):#Red: Up-spike
                     self.spikes.append(Spike(8, (x*10, y*10)))
@@ -102,8 +78,43 @@ class Level:
     def save(self):
         pass
 
-    def writeTextFile(self):
+    def loadTxtFile(self):
         pass
+
+    def edit(self):
+        selected = None
+        clicked = False
+        releaseClick = True
+        wheelDown = False
+        wheelUp = False
+        while True:
+            self.lvlSurf = pygame.Surface((self.lvlX, self.lvlY))
+            for event in pygame.event.get:
+                if event.type == QUIT:
+                    DTQuit()
+                if event.type == MOUSEBUTTONUP:
+                    if event.button == 1:
+                        clicked = False
+                        releaseClick = True
+                    if event.button == 4:
+                        wheelDown = True
+                    if event.button == 5:
+                        wheelUp = True
+                if event.type == MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        clicked = True
+
+            for i in self.blocks:
+                self.lvlSurf.blit(self.sprite, self.rect)
+            for i in self.spikes:
+                self.lvlSurf.blit(self.sprite, self.rect)
+            for i in self.healths:
+                self.lvlSurf.blit(self.sprite, self.rect)
+            for i in self.monsters:
+                self.lvlSurf.blit(self.sprite, self.rect)
+
+
+        pygame.display.update()
 
 class Block:
     def __init__(self, kind, rect):
@@ -121,42 +132,51 @@ class Block:
             
     def stretch(self):
         print('Stretch how far in the X direction?')
-        deltaX = input()
+        deltaX = int(input())
         print('Stretch how far in the Y direction?')
-        deltaY = input()
+        deltaY = int(input())
         if self.rect.width - deltaX > 0:
             self.rect.width += deltaX
+        else:
+            print('Invalid input for X')
         if self.rect.height - deltaY > 0:
             self.rect.height += deltaY
+        else:
+            print('Invalid input for Y')
 
 
 class Health:
     def __init__(self, coord):
         self.coord = coord
+        self.sprite = imgLoad('Health.bmp', 'a')
+        self.sprite.set_colorkey((0,255,0))
 
 class Spike:
-    def __init__(self, direction, coord):
-        self.coord = coord
-        self.blitCoord = tuple(coord)
-        self.direction = direction
-        self.sprite = imgLoad('Spike.bmp', 'a')
-        if self.direction == 8:
+    #Don't step on the pointy bits
+    #Finished for now...
+    def __init__(self, side, position):
+        self.sprite = imgLoad('Spike.bmp', 'a').convert()
+        self.sprite.set_colorkey((0,255,0))
+        if side == 4:
+            self.rect = pygame.Rect(position[0]-10, position[1], 20, 10)
+        elif side == 6:
+            self.sprite = pygame.transform.flip(self.sprite, True, False)
+            self.rect = pygame.Rect(position[0], position[1], 20, 10)
+        elif side == 2:
             self.sprite = pygame.transform.rotate(self.sprite, 90)
-            self.blitCoord = (coord[0], coord[1]-10)
-        if self.direction == 6:
-            self.sprite = pygame.transform.rotate(self.sprite, 180)
-        if self.direction == 2:
-            self.sprite = pygame.transform.rotate(self.sprite, -90)
-        if self.direction == 4:
-            self.blitCoord = (coord[0]-10, coord[1])
+            self.rect = pygame.Rect(position[0], position[1], 10, 20)
+        elif side == 8:
+            self.sprite = pygame.transform.rotate(self.sprite, 270)
+            self.rect = pygame.Rect(position[0], position[1]-10, 10, 20)
 
 class Monster:
     def __init__(self, name, coord, direction, mood, sprite):
         self.name = name
-        self.coord = coord
         self.direction = direction
         self.mood = mood
         self.sprite = imgLoad(sprite, 'a')
+        self.sprite.set_colorkey(self.sprite.get_at((0,0)))
+        self.rect = pygame.Rect(coord[0], coord[1], 
 
 
 WX = 600
