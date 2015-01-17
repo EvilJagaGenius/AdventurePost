@@ -248,7 +248,7 @@ class BreakBlock:
         #Because I couldn't use the word 'break'
         lester.remove(self)
         
-class exitBlock:
+class ExitBlock:
     def __init__(self, rect):
         self.rect = rect
 
@@ -277,7 +277,7 @@ class Level: #Platformer levels.  Tap 'E' to see the FPS you're running at, shou
                 if self.source.get_at((x, y)) == (0,255,0):
                     self.start = (x*10, y*10)#Spawn point is the green pixel
                 if self.source.get_at((x, y)) == (0,0,255):#Exit is the blue pixel
-                    self.exitBlock = exitBlock(pygame.Rect(x*10, y*10, 20, 20))
+                    self.exitBlock = ExitBlock(pygame.Rect(x*10, y*10, 20, 20))
                 if self.source.get_at((x, y)) == (255,0,0):#Red pixels are wall-running surfaces
                     self.wallRuns.append(WallRunBlock(pygame.Rect(x*10, y*10, 10, 10), colorScheme))
                 if self.source.get_at((x, y)) == (100,0,0):#Dark red pixels are breakable
