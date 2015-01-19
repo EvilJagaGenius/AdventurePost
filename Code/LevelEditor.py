@@ -41,39 +41,45 @@ def txtLoad(txtFile, mode):
 
 class Level:
     def __init__(self, imgSource, txtSource):
+        
+        self.origin = [0,0]
         self.imgSource = imgLoad(imgSource, 'al')
         self.txtSource = open(txtLoad(txtSource, 'a'), 'r')
-        self.lvlX = self.imgSource.get_width()
-        self.lvlY = self.imgSource.get_height()
+        self.lvlX = self.imgSource.get_width()*10
+        self.lvlY = self.imgSource.get_height()*10
+        print(self.lvlX)
+        print(self.lvlY)
         self.blocks = []
         self.monsters = []
         self.healths = []
         self.spikes = []
         self.start = (0,0)
         self.exit = (0,0)
-        for x in self.imgSource.get_width():
-            for y in self.imgSource.get_height():
-                if self.source.get_at((x, y)) == (0,0,0):
+        for x in range(self.imgSource.get_width()):
+            for y in range(self.imgSource.get_height()):
+                if self.imgSource.get_at((x, y)) == (0,0,0):
                     self.blocks.append(Block('Block', pygame.Rect(x*10, y*10, 10, 10)))
-                if self.source.get_at((x, y)) == (0,255,0):
+                if self.imgSource.get_at((x, y)) == (0,255,0):
                     self.start = (x*10, y*10)#Spawn point is the green pixel
-                if self.source.get_at((x, y)) == (0,0,255):#Exit is the blue pixel
+                if self.imgSource.get_at((x, y)) == (0,0,255):#Exit is the blue pixel
                     self.exit = (x*10, y*10)
-                if self.source.get_at((x, y)) == (255,0,0):#Red pixels are wall-running surfaces
+                if self.imgSource.get_at((x, y)) == (255,0,0):#Red pixels are wall-running surfaces
                     self.blocks.append(Block('WallRunBlock', pygame.Rect(x*10, y*10, 10, 10)))
-                if self.source.get_at((x, y)) == (100,0,0):#Dark red pixels are breakable
+                if self.imgSource.get_at((x, y)) == (100,0,0):#Dark red pixels are breakable
                     self.blocks.append(Block('BreakBlock', pygame.Rect(x*10, y*10, 10, 10)))
 
-                if self.source.get_at((x, y)) == (25,0,0):#Red: Up-spike
+                if self.imgSource.get_at((x, y)) == (25,0,0):#Red: Up-spike
                     self.spikes.append(Spike(8, (x*10, y*10)))
-                if self.source.get_at((x, y)) == (0,25,0):#Green: Left-spike
+                if self.imgSource.get_at((x, y)) == (0,25,0):#Green: Left-spike
                     self.spikes.append(Spike(6, (x*10, y*10)))
-                if self.source.get_at((x, y)) == (0,0,25):#Blue: Down-spike
+                if self.imgSource.get_at((x, y)) == (0,0,25):#Blue: Down-spike
                     self.spikes.append(Spike(2, (x*10, y*10)))
-                if self.source.get_at((x, y)) == (25,25,25):#Grey: Right-spike
+                if self.imgSource.get_at((x, y)) == (25,25,25):#Grey: Right-spike
                     self.spikes.append(Spike(4, (x*10, y*10)))
-                if self.source.get_at((x, y)) == (0,100,0):
+                if self.imgSource.get_at((x, y)) == (0,100,0):
                     self.healths.append(Health(10, (x*10, y*10)))
+
+        self.objects = self.blocks + self.monsters + self.spikes + self.healths
 
     def save(self):
         pass
@@ -81,40 +87,78 @@ class Level:
     def loadTxtFile(self):
         pass
 
+    def getViewSurf(self, coord):
+        viewRect = pygame.Rect(0,0,600,400)
+        if (self.lvlX < coord[0] + 600):
+            viewRect.left = self.lvlX - 600
+        elif not (self.lvlX < coord[0] + 600):
+            viewRect.left = coord[0]
+
+        if (self.lvlY < coord[1] + 400):
+            viewRect.top = self.lvlY - 400
+        elif not (self.lvlY < coord[1] + 400):
+            viewRect.top = coord[1]
+
+        viewSurf = self.lvlSurf.subsurface(viewRect)
+        return viewSurf
+        
+    def moveOrigin(self, deltaX, deltaY):
+        if (self.origin[0] + deltaX + 600 < self.lvlX) and (self.origin[0] + deltaX > 0):
+            self.origin[0] += deltaX
+        if (self.origin[1] + deltaY + 400 < self.lvlY) and (self.origin[1] + deltaY > 0):
+            self.origin[1] += deltaY
+
     def edit(self):
+        lastMousePos = pygame.mouse.get_pos()
+        mousePos = pygame.mouse.get_pos()
+        deltaX = 0
+        deltaY = 0
+        
         selected = None
-        clicked = False
-        releaseClick = True
+        leftClicked = False
+        releaseLeftClick = True
+        rightClicked = False
+        releaseRightClick = True
         wheelDown = False
         wheelUp = False
         while True:
+            mousePos = pygame.mouse.get_pos()
+            deltaX = mousePos[0] - lastMousePos[0]
+            deltaY = mousePos[1] - lastMousePos[1]
+            
             self.lvlSurf = pygame.Surface((self.lvlX, self.lvlY))
-            for event in pygame.event.get:
+            self.lvlSurf.fill((102, 51, 0))
+            for event in pygame.event.get():
                 if event.type == QUIT:
                     DTQuit()
                 if event.type == MOUSEBUTTONUP:
                     if event.button == 1:
-                        clicked = False
-                        releaseClick = True
+                        leftClicked = False
+                        releaseLeftClick = True
+                    if event.button == 2:
+                        rightClicked = False
+                        releaseRightClick = True
                     if event.button == 4:
                         wheelDown = True
                     if event.button == 5:
                         wheelUp = True
                 if event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        clicked = True
+                        leftClicked = True
+                    if event.button == 2:
+                        rightClicked = True
 
-            for i in self.blocks:
-                self.lvlSurf.blit(self.sprite, self.rect)
-            for i in self.spikes:
-                self.lvlSurf.blit(self.sprite, self.rect)
-            for i in self.healths:
-                self.lvlSurf.blit(self.sprite, self.rect)
-            for i in self.monsters:
-                self.lvlSurf.blit(self.sprite, self.rect)
+            for i in self.objects:
+                self.lvlSurf.blit(i.sprite, i.rect)
+            self.lvlSurf.blit(imgLoad('HuxStand.bmp', 'a'), self.start)
+            self.lvlSurf.blit(imgLoad('ExitBlock.bmp', 'a'), self.exit)
+            if leftClicked:
+                self.moveOrigin(deltaX, deltaY)
 
-
-        pygame.display.update()
+            window.blit(self.getViewSurf(self.origin), (0,0))
+            lastMousePos = mousePos
+            
+            pygame.display.update()
 
 class Block:
     def __init__(self, kind, rect):
@@ -147,7 +191,7 @@ class Block:
 
 class Health:
     def __init__(self, coord):
-        self.coord = coord
+        self.rect = pygame.Rect(coord[0], coord[1], 10, 10)
         self.sprite = imgLoad('Health.bmp', 'a')
         self.sprite.set_colorkey((0,255,0))
 
@@ -176,9 +220,22 @@ class Monster:
         self.mood = mood
         self.sprite = imgLoad(sprite, 'a')
         self.sprite.set_colorkey(self.sprite.get_at((0,0)))
-        self.rect = pygame.Rect(coord[0], coord[1], 
+        self.rect = pygame.Rect(coord[0], coord[1], self.sprite.get_width(), self.sprite.get_height()) 
 
+
+def DTQuit():
+    pygame.quit()
+    sys.exit()
+
+print(".bmp file name")
+bmpFile = 'Level1.bmp'#input()
+print(".txt file name")
+txtFile = 'Level1.txt'#input()
+print('Loading...')
 
 WX = 600
 WY = 400
 window = pygame.display.set_mode((WX, WY), 0, 32)
+
+level = Level(bmpFile, txtFile)
+level.edit()

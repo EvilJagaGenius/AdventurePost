@@ -270,29 +270,7 @@ class Level: #Platformer levels.  Tap 'E' to see the FPS you're running at, shou
         self.target = None
         self.name = 'scenes.' + name
         self.colorScheme = colorScheme
-        for x in range(self.source.get_width()):
-            for y in range(self.source.get_height()):
-                if self.source.get_at((x, y)) == (0,0,0):
-                    self.blocks.append(Block(pygame.Rect(x*10, y*10, 10, 10), colorScheme))
-                if self.source.get_at((x, y)) == (0,255,0):
-                    self.start = (x*10, y*10)#Spawn point is the green pixel
-                if self.source.get_at((x, y)) == (0,0,255):#Exit is the blue pixel
-                    self.exitBlock = ExitBlock(pygame.Rect(x*10, y*10, 20, 20))
-                if self.source.get_at((x, y)) == (255,0,0):#Red pixels are wall-running surfaces
-                    self.wallRuns.append(WallRunBlock(pygame.Rect(x*10, y*10, 10, 10), colorScheme))
-                if self.source.get_at((x, y)) == (100,0,0):#Dark red pixels are breakable
-                    self.breaks.append(BreakBlock(pygame.Rect(x*10, y*10, 10, 10), colorScheme))
-
-                if self.source.get_at((x, y)) == (25,0,0):#Red: Up-spike
-                    self.spikes.append(Spike(8, (x*10, y*10)))
-                if self.source.get_at((x, y)) == (0,25,0):#Green: Left-spike
-                    self.spikes.append(Spike(6, (x*10, y*10)))
-                if self.source.get_at((x, y)) == (0,0,25):#Blue: Down-spike
-                    self.spikes.append(Spike(2, (x*10, y*10)))
-                if self.source.get_at((x, y)) == (25,25,25):#Grey: Right-spike
-                    self.spikes.append(Spike(4, (x*10, y*10)))
-                if self.source.get_at((x, y)) == (0,100,0):
-                    self.healths.append(Health(10, (x*10, y*10)))
+        
         self.lvlSurf = pygame.Surface((self.source.get_width()*10, self.source.get_height()*10))
         self.lvlX = self.lvlSurf.get_width()
         self.lvlY = self.lvlSurf.get_height()
@@ -349,6 +327,29 @@ do exactly what you'd think they'd do.
         return viewSurf
 
     def play(self, player, junkCoord):
+        for x in range(self.source.get_width()):
+            for y in range(self.source.get_height()):
+                if self.source.get_at((x, y)) == (0,0,0):
+                    self.blocks.append(Block(pygame.Rect(x*10, y*10, 10, 10), self.colorScheme))
+                if self.source.get_at((x, y)) == (0,255,0):
+                    self.start = (x*10, y*10)#Spawn point is the green pixel
+                if self.source.get_at((x, y)) == (0,0,255):#Exit is the blue pixel
+                    self.exitBlock = ExitBlock(pygame.Rect(x*10, y*10, 20, 20))
+                if self.source.get_at((x, y)) == (255,0,0):#Red pixels are wall-running surfaces
+                    self.wallRuns.append(WallRunBlock(pygame.Rect(x*10, y*10, 10, 10), self.colorScheme))
+                if self.source.get_at((x, y)) == (100,0,0):#Dark red pixels are breakable
+                    self.breaks.append(BreakBlock(pygame.Rect(x*10, y*10, 10, 10), self.colorScheme))
+
+                if self.source.get_at((x, y)) == (25,0,0):#Red: Up-spike
+                    self.spikes.append(Spike(8, (x*10, y*10)))
+                if self.source.get_at((x, y)) == (0,25,0):#Green: Left-spike
+                    self.spikes.append(Spike(6, (x*10, y*10)))
+                if self.source.get_at((x, y)) == (0,0,25):#Blue: Down-spike
+                    self.spikes.append(Spike(2, (x*10, y*10)))
+                if self.source.get_at((x, y)) == (25,25,25):#Grey: Right-spike
+                    self.spikes.append(Spike(4, (x*10, y*10)))
+                if self.source.get_at((x, y)) == (0,100,0):
+                    self.healths.append(Health(10, (x*10, y*10)))
         #Setting variables, blah blah blah
         #I actually made a level and saved the game so I can't leave until I finish work on the platformer
         self.loadTxtFile()
@@ -423,7 +424,6 @@ do exactly what you'd think they'd do.
             for i in self.beasties:
                 self.lvlSurf.blit(i.sprite, i.rect)
                 if i.move(playerCoord, touchList) == 'restart':
-                    self.reset()
                     return (self, player, (0,0))
                     
             for i in self.spikes:
@@ -641,7 +641,7 @@ do exactly what you'd think they'd do.
 
             #Exiting the level
             if player.collides([self.exitBlock]) != []:
-                self.reset()
+
                 return (self.target, player, (0,0))
 
             #Hitting things.  Will need improvement.
@@ -753,42 +753,7 @@ do exactly what you'd think they'd do.
             pygame.display.update()
             chrono.tick(60)
 
-    def reset(self):
-        #Copied a bunch of code from the __init__() function, but the levels reset now
-        self.blocks = []
-        self.wallRuns = []
-        self.breaks = []
-        self.voices = []
-        self.delVoices = []
-        self.spikes = []
-        self.healths = []
-        for i in self.beasties:
-            i.revive()
-        for x in range(self.source.get_width()):
-            for y in range(self.source.get_height()):
-                if self.source.get_at((x, y)) == (0,0,0):
-                    self.blocks.append(Block(pygame.Rect(x*10, y*10, 10, 10), self.colorScheme))
-                if self.source.get_at((x, y)) == (0,255,0):
-                    self.start = (x*10, y*10)#Spawn point is the green pixel
-                if self.source.get_at((x, y)) == (0,0,255):#Exit is the blue pixel
-                    self.exitBlock = exitBlock(pygame.Rect(x*10, y*10, 20, 20))
-                if self.source.get_at((x, y)) == (255,0,0):#Red pixels are wall-running surfaces
-                    self.wallRuns.append(WallRunBlock(pygame.Rect(x*10, y*10, 10, 10), self.colorScheme))
-                if self.source.get_at((x, y)) == (100,0,0):#Dark red pixels are breakable
-                    self.breaks.append(BreakBlock(pygame.Rect(x*10, y*10, 10, 10), self.colorScheme))
-
-                if self.source.get_at((x, y)) == (25,0,0):#Red: Up-spike
-                    self.spikes.append(Spike(8, (x*10, y*10)))
-                if self.source.get_at((x, y)) == (0,25,0):#Green: Left-spike
-                    self.spikes.append(Spike(6, (x*10, y*10)))
-                if self.source.get_at((x, y)) == (0,0,25):#Blue: Down-spike
-                    self.spikes.append(Spike(2, (x*10, y*10)))
-                if self.source.get_at((x, y)) == (25,25,25):#Grey: Right-spike
-                    self.spikes.append(Spike(4, (x*10, y*10)))
-                if self.source.get_at((x, y)) == (0,100,0):
-                    self.healths.append(Health(10, (x*10, y*10)))
-        self.lvlSurf = pygame.Surface((self.source.get_width()*10, self.source.get_height()*10))
-
+    
 
 finished = True
 print('Done loading APPLE')

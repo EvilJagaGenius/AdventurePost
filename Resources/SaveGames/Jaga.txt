@@ -1,2 +1,2 @@
-scenes.startScene
+scenes.poXRoad1
 Player("Jaga",0,[])
