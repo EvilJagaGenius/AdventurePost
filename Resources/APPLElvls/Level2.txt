@@ -1,2 +1,2 @@
 +monster|NuiJagaP|380|743|'r'|True
-+block|280|740|30|30
++block|Block|280|740|30|30

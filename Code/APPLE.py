@@ -71,7 +71,7 @@ class CCGPunk:
     #The CCG is a hitscan weapon
     def __init__(self, coord, junkDirection, junkMood):
         self.spawn = coord
-        self.spriteR = imgLoad('Kylae.bmp', 'a').convert()
+        self.spriteR = imgLoad('CCGPunk.bmp', 'a').convert()
         self.spriteR.set_colorkey((255,255,255))
         self.spriteL = pygame.transform.flip(self.spriteR, True, False).convert()
         self.spriteL.set_colorkey((255,255,255))
@@ -294,7 +294,7 @@ do exactly what you'd think they'd do.
             line = line.strip()
             cmdList = line.split('|')
             if cmdList[0] == '+block':
-                self.blocks.append(Block(pygame.Rect(int(cmdList[1]), int(cmdList[2]), int(cmdList[3]), int(cmdList[4])), self.colorScheme))
+                self.blocks.append(eval(cmdList[1])(pygame.Rect(int(cmdList[2]), int(cmdList[3]), int(cmdList[4]), int(cmdList[5])), self.colorScheme))
             if cmdList[0] == '+monster':
                 self.beasties.append(eval(cmdList[1])((int(cmdList[2]), int(cmdList[3])), cmdList[4], bool(cmdList[5])))
             if cmdList[0] == '+voice':

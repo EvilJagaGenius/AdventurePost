@@ -1,2 +1,2 @@
-scenes.poXRoad1
+scenes.Lvl2
 Player("Jaga",0,[])
