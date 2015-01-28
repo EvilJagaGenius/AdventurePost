@@ -1,5 +1,7 @@
 #APPLE level editor, v.1
-#TTG
+#Controls:
+#m: Move selected object
+#Delete: Delete object
 
 import pygame, sys, os
 from pygame import *
@@ -44,6 +46,8 @@ class Level:
     def __init__(self, imgSource, txtSource):
         
         self.origin = [0,0]
+        self.imgName = imgSource
+        self.txtName = txtSource
         self.imgSource = imgLoad(imgSource, 'al')
         self.txtSource = txtLoad(txtSource, 'a')
         self.lvlX = self.imgSource.get_width()*10
@@ -85,7 +89,43 @@ class Level:
         self.objects.append(self.exit)
 
     def save(self):
-        pass
+        print('Saving...')
+        newImage = pygame.Surface((self.lvlX // 10, self.lvlY // 10))
+        newImage.fill((255,255,255))
+        newFile = open(txtLoad(self.txtName, 'a'), 'w')
+        for i in self.objects:
+            #Image file editing here
+            if i.name == 'Player':
+                print('Start point')
+                newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,255,0))
+            if i.name == 'Exit':
+                print('End point')
+                newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,0,255))
+            if i.name == 'Block' and i.rect.width == 10 and i.rect.height == 10:
+                newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,0,0))
+            if i.name == 'WallRunBlock':
+                newImage.set_at((i.rect.left // 10, i.rect.top // 10), (255,0,0))
+            if i.name == 'BreakBlock':
+                newImage.set_at((i.rect.left // 10, i.rect.top // 10), (100,0,0))
+            if i.name == 'Spike-8':
+                newImage.set_at((i.rect.left // 10, i.rect.top // 10), (25,0,0))
+            if i.name == 'Spike-4':
+                newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,25,0))
+            if i.name == 'Spike-2':
+                newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,0,25))
+            if i.name == 'Spike-6':
+                newImage.set_at((i.rect.left // 10, i.rect.top // 10), (25,25,25))
+            if i.name == 'Health':
+                newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,100,0))
+            else: #Text file editing here
+                if type(i) == type(Monster('NuiJagaP', (0,0), 'r', False)):
+                    newFile.write('+monster|'+i.name+'|'+i.rect.left+'|'+i.rect.top+'|'+i.direction+'|'+i.mood+'\n')
+                if type(i) == type(Block('Block', pygame.Rect(0,0,0,0))):
+                    newFile.write('+block'+i.name+'|'+i.rect.left+'|'+i.rect.top+'|'+i.rect.width+'|'+i.rect.height+'\n')
+
+        filePath = os.path.join('..', 'Resources', 'APPLElvls', self.imgName)
+        pygame.image.save(newImage, filePath)
+        newFile.close()
 
     def loadTxtFile(self):
         for line in open(self.txtSource, 'r'):
@@ -126,14 +166,18 @@ class Level:
         deltaY = 0
         monsters = ['NuiJagaP', 'CCGPunk']
         blocks = ['Block', 'WallRunBlock', 'HitBlock']
-        tools = ['move', 'stretch', 'delete']
+        tools = ['move', 'delete']
         usedTool = 0
+        delPress =False
+        mPress = False
         selected = None
         leftClicked = False
         releaseLeftClick = True
         rightClicked = False
         releaseRightClick = True
         while True:
+            delPress = False
+            mPress = False
             upPress = False
             downPress = False
             leftPress = False
@@ -146,6 +190,7 @@ class Level:
             self.lvlSurf.fill((102, 51, 0))
             for event in pygame.event.get():
                 if event.type == QUIT:
+                    self.save()
                     DTQuit()
                 if event.type == MOUSEBUTTONUP:
                     if event.button == 1:
@@ -164,6 +209,8 @@ class Level:
                     if event.button == 3:
                         rightClicked = True
                 if event.type == KEYUP:
+                    if event.key == ord('m'):
+                        mPress = True
                     if event.key == K_UP:
                         upPress = True
                     if event.key == K_DOWN:
@@ -172,6 +219,9 @@ class Level:
                         leftPress = True
                     if event.key == K_RIGHT:
                         rightPress = True
+                    if event.key == K_DELETE:
+                        delPress = True
+                        
 
             for i in self.objects:
                 self.lvlSurf.blit(i.sprite, i.rect)
@@ -189,10 +239,15 @@ class Level:
             if selected != None:
                 window.blit(txt.render(selected.name + str(selected.rect), True, (255,255,255)), (0,0))
                 pygame.draw.rect(window, (0,255,0), pygame.Rect(selected.rect.left - self.origin[0], selected.rect.top - self.origin[1], selected.rect.width, selected.rect.height), 1)
+                if mPress:
+                    selected.move()
+                if delPress:
+                    self.objects.remove(selected)
+                    selected = None
             else:
                 window.blit(txt.render('Nothing selected', True, (255,255,255)), (0,0))
 
-            window.blit(txt.render(str(mousePos), True, (255,255,255)), (0, 25))
+            window.blit(txt.render(str((self.origin[0] + mousePos[0], self.origin[1] + mousePos[1])), True, (255,255,255)), (0, 25))
             lastMousePos = mousePos
             
             pygame.display.update()
@@ -226,6 +281,17 @@ class Block:
         else:
             print('Invalid input for Y')
 
+    def move(self):
+        print('\nCoords will be rounded to 10.')
+        newX = input('New X coord:')
+        newY = input('New Y coord:')
+        if newX != '':
+            newX = roundToTen(newX)
+            self.rect.left = newX
+        if newY != '':
+            newY = roundToTen(newY)
+            self.rect.top = newY
+
 
 class Health:
     def __init__(self, coord):
@@ -233,6 +299,17 @@ class Health:
         self.rect = pygame.Rect(coord[0], coord[1], 10, 10)
         self.sprite = imgLoad('Health.bmp', 'a')
         self.sprite.set_colorkey((0,255,0))
+
+    def move(self):
+        print('\nCoords will be rounded to 10.')
+        newX = input('New X coord:')
+        newY = input('New Y coord:')
+        if newX != '':
+            newX = roundToTen(newX)
+            self.rect.left = newX
+        if newY != '':
+            newY = roundToTen(newY)
+            self.rect.top = newY
 
 class Spike:
     #Don't step on the pointy bits
@@ -257,6 +334,17 @@ class Spike:
             self.sprite = pygame.transform.rotate(self.sprite, 270)
             self.rect = pygame.Rect(position[0], position[1]-10, 10, 20)
 
+    def move(self):
+        print('\nCoords will be rounded to 10.')
+        newX = input('New X coord:')
+        newY = input('New Y coord:')
+        if newX != '':
+            newX = roundToTen(newX)
+            self.rect.left = newX
+        if newY != '':
+            newY = roundToTen(newY)
+            self.rect.top = newY
+
 class Monster:
     def __init__(self, name, coord, direction, mood):
         self.name = name
@@ -265,6 +353,17 @@ class Monster:
         self.sprite = imgLoad(name+'.bmp', 'a')
         self.sprite.set_colorkey(self.sprite.get_at((0,0)))
         self.rect = pygame.Rect(coord[0], coord[1], self.sprite.get_width(), self.sprite.get_height())
+
+    def move(self):
+        print('\nCoords will be rounded to 10.')
+        newX = input('New X coord:')
+        newY = input('New Y coord:')
+        if newX != '':
+            newX = roundToTen(newX)
+            self.rect.left = newX
+        if newY != '':
+            newY = roundToTen(newY)
+            self.rect.top = newY
 
 class Start:
     def __init__(self, coord):
@@ -277,10 +376,10 @@ class Start:
         newX = input('New X coord:')
         newY = input('New Y coord:')
         if newX != '':
-            newX = int(newX[0:-1] + '0')
+            newX = roundToTen(newX)
             self.rect.left = newX
         if newY != '':
-            newY = int(newY[0:-1] + '0')
+            newY = roundToTen(newY)
             self.rect.top = newY
 
 class Exit:
@@ -294,10 +393,10 @@ class Exit:
         newX = input('New X coord:')
         newY = input('New Y coord:')
         if newX != '':
-            newX = int(newX[0:-1] + '0')
+            newX = roundToTen(newX)
             self.rect.left = newX
         if newY != '':
-            newY = int(newY[0:-1] + '0')
+            newY = roundToTen(newY)
             self.rect.top = newY
 
 
@@ -305,12 +404,16 @@ def DTQuit():
     pygame.quit()
     sys.exit()
 
+def roundToTen(num):
+    newNum = int(str(num)[0:-1] + '0')
+    return newNum
+
 
 
 print(".bmp file name")
-bmpFile = 'Level2.bmp'#input()
+bmpFile = 'Test.bmp'#input()
 print(".txt file name")
-txtFile = 'Level2.txt'#input()
+txtFile = 'Test.txt'#input()
 print('Loading...')
 
 WX = 600
