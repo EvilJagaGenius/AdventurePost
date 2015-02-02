@@ -7,6 +7,9 @@ import pygame, sys, os
 from pygame import *
 pygame.init()
 
+knownMonsters = ['NuiJagaP', 'CCGPunk']
+knownBlocks = ['Block', 'WallRunBlock', 'BreakBlock']
+
 def imgLoad(imgFile, mode):
     if mode == 'i':
         folder = 'ItemImgs'
@@ -58,6 +61,7 @@ class Level:
         self.monsters = []
         self.healths = []
         self.spikes = []
+        self.voices = []
         self.start = Start((0,0))
         self.exit = Exit((0,0))
         for x in range(self.imgSource.get_width()):
@@ -96,7 +100,6 @@ class Level:
         newFile.close()
         newFile = open(txtLoad(self.txtName, 'a'), 'a')
         for i in self.objects:
-            #Image file editing here
             if i.name == 'Player':
                 print('Start point')
                 newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,255,0))
@@ -105,7 +108,7 @@ class Level:
                 newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,0,255))
             if i.name == 'Block' and i.rect.width == 10 and i.rect.height == 10:
                 newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,0,0))
-            if i.name == 'Block' and i.rect.width > 10 and i.rect.height > 10:
+            if (i.name in knownBlocks) and (i.rect.width > 10 or i.rect.height > 10):
                 print('Saving block')
                 newFile.write('+block'+'|'+i.name+'|'+str(i.rect.left)+'|'+str(i.rect.top)+'|'+str(i.rect.width)+'|'+str(+i.rect.height)+'\n')
             if i.name == 'WallRunBlock':
@@ -122,6 +125,12 @@ class Level:
                 newImage.set_at((i.rect.left // 10, i.rect.top // 10), (25,25,25))
             if i.name == 'Health':
                 newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,100,0))
+            if i.name in knownMonsters:
+                newFile.write('+monster|'+i.name+'|'+str(i.rect.left)+'|'+str(i.rect.top)+'|'+i.direction+'|'+str(i.mood)+'\n')
+
+        for i in self.voices:
+            newFile.write('+voice|'+str(i.rect.left)+'|'+str(i.rect.top)+'|'+str(i.rect.width)+'|'+str(i.rect.height)+'|'+i.string+'|'+str(i.delRect.left)+'|'+str(i.delRect.top)+'|'+str(i.delRect.width)+'|'+str(i.delRect.height)+'\n')
+        
             
 
         filePath = os.path.join('..', 'Resources', 'APPLElvls', self.imgName)
@@ -138,6 +147,8 @@ class Level:
             elif cmdList[0] == '+monster':
                 print('Adding monster')
                 self.monsters.append(Monster(cmdList[1], (int(cmdList[2]), int(cmdList[3])), cmdList[4], bool(cmdList[5])))
+            elif cmdList[0] == '+voice':
+                self.voices.append(Voice(pygame.Rect(int(cmdList[1]), int(cmdList[2]), int(cmdList[3]), int(cmdList[4])), cmdList[5], pygame.Rect(int(cmdList[6]), int(cmdList[7]), int(cmdList[8]), int(cmdList[9]))))
 
     def getViewSurf(self, coord):
         viewRect = pygame.Rect(0,0,600,400)
@@ -155,6 +166,7 @@ class Level:
         return viewSurf
         
     def moveOrigin(self, deltaX, deltaY):
+        #self.origin determines what part of the level you're looking at
         if (self.origin[0] + deltaX + 600 < self.lvlX) and (self.origin[0] + deltaX > 0):
             self.origin[0] += deltaX
         if (self.origin[1] + deltaY + 400 < self.lvlY) and (self.origin[1] + deltaY > 0):
@@ -178,6 +190,7 @@ class Level:
         rightClicked = False
         releaseRightClick = True
         while True:
+            ePress = False
             sPress = False
             delPress = False
             mPress = False
@@ -185,7 +198,7 @@ class Level:
             downPress = False
             leftPress = False
             rightPress = False
-            enterPress = False
+            enterPress = False #Why are you still here?
             mousePos = pygame.mouse.get_pos()
             deltaX = mousePos[0] - lastMousePos[0]
             deltaY = mousePos[1] - lastMousePos[1]
@@ -217,6 +230,8 @@ class Level:
                         sPress = True
                     if event.key == ord('m'):
                         mPress = True
+                    if event.key == ord('e'):
+                        ePress = True
                     if event.key == K_UP:
                         upPress = True
                     if event.key == K_DOWN:
@@ -231,22 +246,35 @@ class Level:
 
             for i in self.objects:
                 self.lvlSurf.blit(i.sprite, i.rect)
+            for v in self.voices:
+                self.lvlSurf.blit(v.mainSprite, v.rect)
+                self.lvlSurf.blit(v.delSprite, v.delRect)
 
             
             if rightClicked:
                 self.moveOrigin(deltaX, deltaY)
-            if leftClicked:
+            if leftClicked and releaseLeftClick:
+                releaseLeftClick = False
                 if tools[usedTool] == 'select':
                     for i in self.objects:
                         dectRect = pygame.Rect(i.rect.left - self.origin[0], i.rect.top - self.origin[1], i.rect.width, i.rect.height)
                         if dectRect.collidepoint(mousePos):
                             if i != selected:
                                 selected = i
+                    for i in self.voices:
+                        dectRect = pygame.Rect(i.rect.left - self.origin[0], i.rect.top - self.origin[1], i.rect.width, i.rect.height)
+                        dectRect2 = pygame.Rect(i.delRect.left - self.origin[0], i.delRect.top - self.origin[1], i.delRect.width, i.delRect.height)
+                        if dectRect.collidepoint(mousePos) or dectRect2.collidepoint(mousePos):
+                            if i != selected:
+                                selected = i
+
                 
-                releaseLeftClick = False
 
                 if tools[usedTool] == 'add':
-                    self.objects.append(eval(objects[usedObject]))
+                    if objects[usedObject].startswith('Voice'):
+                        self.voices.append(eval(objects[usedObject]))
+                    else:
+                        self.objects.append(eval(objects[usedObject]))
 
             window.blit(self.getViewSurf(self.origin), (0,0))
             if selected != None:
@@ -256,16 +284,25 @@ class Level:
                     selected.move()
                 if sPress:
                     selected.stretch()
+                if ePress:
+                    selected.edit()
                 if delPress:
-                    self.objects.remove(selected)
+                    if selected in self.objects:
+                        self.objects.remove(selected)
+                    elif selected in self.voices:
+                        self.voices.remove(selected)
                     selected = None
             
             else:
                 window.blit(txt.render('Nothing selected', True, (255,255,255)), (0,0))
             if leftPress:
-                usedTool = 0
+                usedObject = 0
             if rightPress:
+                usedObject = 1
+            if downPress:
                 usedTool = 1
+            if upPress:
+                usedTool = 0
             window.blit(txt.render(str((self.origin[0] + mousePos[0], self.origin[1] + mousePos[1])), True, (255,255,255)), (0, 20))
             window.blit(txt.render(tools[usedTool], True, (255,255,255)), (0, 40))
             window.blit(txt.render(objects[usedObject], True, (255,255,255)), (0, 60))
@@ -289,12 +326,17 @@ class Block:
         self.sprite = pygame.transform.scale(self.sprite, (self.rect.width, self.rect.height))
             
     def stretch(self):
-        print('Stretch how far in the X direction?')
-        deltaX = int(input())
+        print('\nStretch how far in the X direction?')
+        deltaX = input()
+        if deltaX == '':
+            deltaX = 0
+        deltaX = int(deltaX)
         print('Stretch how far in the Y direction?')
-        deltaY = int(input())
+        deltaY = input()
+        if deltaY == '':
+            deltaY = 0
+        deltaY = int(deltaY)
         self.rect.width += deltaX
-        
         self.rect.height += deltaY
 
         self.sprite = pygame.transform.scale(self.sprite, (self.rect.width, self.rect.height))
@@ -309,6 +351,23 @@ class Block:
         if newY != '':
             newY = roundToTen(newY)
             self.rect.top = newY
+
+    def edit(self):
+        print('\n 1) Block')
+        print(' 2) WallRunBlock')
+        print(' 3) BreakBlock')
+        newType = input('New block type:')
+        if newType == '1':
+            self.sprite = imgLoad('BlockSprite.bmp', 'a')
+            self.name = 'Block'
+        elif newType == '2':
+            self.name = 'WallRunBlock'
+            self.sprite = imgLoad('WallRunBlock.bmp', 'a')
+        elif newType == '3':
+            self.sprite = imgLoad('HitBlock.bmp', 'a')
+            self.name = 'BreakBlock'
+            
+        self.sprite = pygame.transform.scale(self.sprite, (self.rect.width, self.rect.height))
 
 
 class Health:
@@ -332,6 +391,9 @@ class Health:
     def stretch(self):
         print('Not stretchable')
 
+    def edit(self):
+        print('No special edits')
+
 class Voice:
     def __init__(self, rect, string, delRect):
         '''Text that shows up in an APPLE level when the player walks in the corresponding Rect()'''
@@ -339,15 +401,68 @@ class Voice:
         self.string = string
         self.rect = rect
         self.delRect = delRect #delRect is where the voice is deleted.
+        self.mainSprite = pygame.Surface((self.rect.width, self.rect.height))
+        self.mainSprite.fill((0,255,0))
+        self.mainSprite.set_alpha(150)
+        self.delSprite = pygame.Surface((self.delRect.width, self.delRect.height))
+        self.delSprite.fill((255,0,0))
+        self.delSprite.set_alpha(150)
 
     def move(self):
-        pass
+        print('\nCoords will be rounded to 10.')
+        newX = input("Main rect's new X coord:")
+        newY = input("Main rect's new Y coord:")
+        if newX != '':
+            newX = roundToTen(newX)
+            self.rect.left = newX
+        if newY != '':
+            newY = roundToTen(newY)
+            self.rect.top = newY
+        newX = input("\ndelRect's new X coord:")
+        newY = input("delRect's new Y coord:")
+        if newX != '':
+            newX = roundToTen(newX)
+            self.delRect.left = newX
+        if newY != '':
+            newY = roundToTen(newY)
+            self.delRect.top = newY
 
     def stretch(self):
-        pass
+        
+        print('\nStretch main rect how far in the X direction?')
+        deltaX = input()
+        if deltaX == '':
+            deltaX = 0
+        deltaX = int(deltaX)
+        print('Stretch main rect how far in the Y direction?')
+        deltaY = input()
+        if deltaY == '':
+            deltaY = 0
+        deltaY = int(deltaY)
+        self.rect.width += deltaX
+        self.rect.height += deltaY
+
+        print('\nStretch delRect how far in the X direction?')
+        deltaX = input()
+        if deltaX == '':
+            deltaX = 0
+        deltaX = int(deltaX)
+        print('Stretch delRect how far in the Y direction?')
+        deltaY = input()
+        if deltaY == '':
+            deltaY = 0
+        deltaY = int(deltaY)
+        self.delRect.width += deltaX
+        self.delRect.height += deltaY        
+
+        self.mainSprite = pygame.transform.scale(self.mainSprite, (self.rect.width, self.rect.height))
 
     def edit(self):
-        pass
+        print('\nOld string:' + self.string)
+        print('Input new string:')
+        newString = input()
+        if newString != '':
+            self.string = newString
 
 class Spike:
     #Don't step on the pointy bits
@@ -387,7 +502,7 @@ class Spike:
         print('Not stretchable')
 
     def edit(self):
-        pass
+        print('No special edits')
         
 class Monster:
     def __init__(self, name, coord, direction, mood):
@@ -413,7 +528,7 @@ class Monster:
         print('Not stretchable')
 
     def edit(self):
-        pass
+        print('No special edits')
     
 class Start:
     def __init__(self, coord):
@@ -472,9 +587,9 @@ def roundToTen(num):
 
 
 print(".bmp file name")
-bmpFile = 'Test.bmp'#input()
+bmpFile = 'Level1.bmp'
 print(".txt file name")
-txtFile = 'Test.txt'#input()
+txtFile = 'Level1.txt'
 print('Loading...')
 
 WX = 600
