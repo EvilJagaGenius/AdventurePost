@@ -93,6 +93,8 @@ class Level:
         newImage = pygame.Surface((self.lvlX // 10, self.lvlY // 10))
         newImage.fill((255,255,255))
         newFile = open(txtLoad(self.txtName, 'a'), 'w')
+        newFile.close()
+        newFile = open(txtLoad(self.txtName, 'a'), 'a')
         for i in self.objects:
             #Image file editing here
             if i.name == 'Player':
@@ -103,6 +105,9 @@ class Level:
                 newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,0,255))
             if i.name == 'Block' and i.rect.width == 10 and i.rect.height == 10:
                 newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,0,0))
+            if i.name == 'Block' and i.rect.width > 10 and i.rect.height > 10:
+                print('Saving block')
+                newFile.write('+block'+'|'+i.name+'|'+str(i.rect.left)+'|'+str(i.rect.top)+'|'+str(i.rect.width)+'|'+str(+i.rect.height)+'\n')
             if i.name == 'WallRunBlock':
                 newImage.set_at((i.rect.left // 10, i.rect.top // 10), (255,0,0))
             if i.name == 'BreakBlock':
@@ -117,11 +122,7 @@ class Level:
                 newImage.set_at((i.rect.left // 10, i.rect.top // 10), (25,25,25))
             if i.name == 'Health':
                 newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,100,0))
-            else: #Text file editing here
-                if type(i) == type(Monster('NuiJagaP', (0,0), 'r', False)):
-                    newFile.write('+monster|'+i.name+'|'+i.rect.left+'|'+i.rect.top+'|'+i.direction+'|'+i.mood+'\n')
-                if type(i) == type(Block('Block', pygame.Rect(0,0,0,0))):
-                    newFile.write('+block'+i.name+'|'+i.rect.left+'|'+i.rect.top+'|'+i.rect.width+'|'+i.rect.height+'\n')
+            
 
         filePath = os.path.join('..', 'Resources', 'APPLElvls', self.imgName)
         pygame.image.save(newImage, filePath)
@@ -164,10 +165,11 @@ class Level:
         mousePos = pygame.mouse.get_pos()
         deltaX = 0
         deltaY = 0
-        monsters = ['NuiJagaP', 'CCGPunk']
-        blocks = ['Block', 'WallRunBlock', 'HitBlock']
-        tools = ['move', 'delete']
+        objects = ['Block("Block", pygame.Rect(roundToTen(self.origin[0]+mousePos[0]),roundToTen(self.origin[1]+mousePos[1]),10,10))',
+                   'Voice(pygame.Rect(roundToTen(self.origin[0]+mousePos[0]),roundToTen(self.origin[1]+mousePos[1]),10,10), "", pygame.Rect(roundToTen(self.origin[0]+mousePos[0]+10),roundToTen(self.origin[1]+mousePos[1]+10),10,10))']
+        tools = ['select', 'add']
         usedTool = 0
+        usedObject = 1
         delPress =False
         mPress = False
         selected = None
@@ -176,12 +178,14 @@ class Level:
         rightClicked = False
         releaseRightClick = True
         while True:
+            sPress = False
             delPress = False
             mPress = False
             upPress = False
             downPress = False
             leftPress = False
             rightPress = False
+            enterPress = False
             mousePos = pygame.mouse.get_pos()
             deltaX = mousePos[0] - lastMousePos[0]
             deltaY = mousePos[1] - lastMousePos[1]
@@ -209,6 +213,8 @@ class Level:
                     if event.button == 3:
                         rightClicked = True
                 if event.type == KEYUP:
+                    if event.key == ord('s'):
+                        sPress = True
                     if event.key == ord('m'):
                         mPress = True
                     if event.key == K_UP:
@@ -225,15 +231,22 @@ class Level:
 
             for i in self.objects:
                 self.lvlSurf.blit(i.sprite, i.rect)
-                
+
+            
             if rightClicked:
                 self.moveOrigin(deltaX, deltaY)
             if leftClicked:
-                for i in self.objects:
-                    dectRect = pygame.Rect(i.rect.left - self.origin[0], i.rect.top - self.origin[1], i.rect.width, i.rect.height)
-                    if dectRect.collidepoint(mousePos):
-                        selected = i
+                if tools[usedTool] == 'select':
+                    for i in self.objects:
+                        dectRect = pygame.Rect(i.rect.left - self.origin[0], i.rect.top - self.origin[1], i.rect.width, i.rect.height)
+                        if dectRect.collidepoint(mousePos):
+                            if i != selected:
+                                selected = i
+                
                 releaseLeftClick = False
+
+                if tools[usedTool] == 'add':
+                    self.objects.append(eval(objects[usedObject]))
 
             window.blit(self.getViewSurf(self.origin), (0,0))
             if selected != None:
@@ -241,13 +254,21 @@ class Level:
                 pygame.draw.rect(window, (0,255,0), pygame.Rect(selected.rect.left - self.origin[0], selected.rect.top - self.origin[1], selected.rect.width, selected.rect.height), 1)
                 if mPress:
                     selected.move()
+                if sPress:
+                    selected.stretch()
                 if delPress:
                     self.objects.remove(selected)
                     selected = None
+            
             else:
                 window.blit(txt.render('Nothing selected', True, (255,255,255)), (0,0))
-
-            window.blit(txt.render(str((self.origin[0] + mousePos[0], self.origin[1] + mousePos[1])), True, (255,255,255)), (0, 25))
+            if leftPress:
+                usedTool = 0
+            if rightPress:
+                usedTool = 1
+            window.blit(txt.render(str((self.origin[0] + mousePos[0], self.origin[1] + mousePos[1])), True, (255,255,255)), (0, 20))
+            window.blit(txt.render(tools[usedTool], True, (255,255,255)), (0, 40))
+            window.blit(txt.render(objects[usedObject], True, (255,255,255)), (0, 60))
             lastMousePos = mousePos
             
             pygame.display.update()
@@ -272,14 +293,11 @@ class Block:
         deltaX = int(input())
         print('Stretch how far in the Y direction?')
         deltaY = int(input())
-        if self.rect.width - deltaX > 0:
-            self.rect.width += deltaX
-        else:
-            print('Invalid input for X')
-        if self.rect.height - deltaY > 0:
-            self.rect.height += deltaY
-        else:
-            print('Invalid input for Y')
+        self.rect.width += deltaX
+        
+        self.rect.height += deltaY
+
+        self.sprite = pygame.transform.scale(self.sprite, (self.rect.width, self.rect.height))
 
     def move(self):
         print('\nCoords will be rounded to 10.')
@@ -310,6 +328,26 @@ class Health:
         if newY != '':
             newY = roundToTen(newY)
             self.rect.top = newY
+
+    def stretch(self):
+        print('Not stretchable')
+
+class Voice:
+    def __init__(self, rect, string, delRect):
+        '''Text that shows up in an APPLE level when the player walks in the corresponding Rect()'''
+        self.name = 'Voice'
+        self.string = string
+        self.rect = rect
+        self.delRect = delRect #delRect is where the voice is deleted.
+
+    def move(self):
+        pass
+
+    def stretch(self):
+        pass
+
+    def edit(self):
+        pass
 
 class Spike:
     #Don't step on the pointy bits
@@ -345,6 +383,12 @@ class Spike:
             newY = roundToTen(newY)
             self.rect.top = newY
 
+    def stretch(self):
+        print('Not stretchable')
+
+    def edit(self):
+        pass
+        
 class Monster:
     def __init__(self, name, coord, direction, mood):
         self.name = name
@@ -364,7 +408,13 @@ class Monster:
         if newY != '':
             newY = roundToTen(newY)
             self.rect.top = newY
+            
+    def stretch(self):
+        print('Not stretchable')
 
+    def edit(self):
+        pass
+    
 class Start:
     def __init__(self, coord):
         self.name = 'Player'
@@ -381,7 +431,13 @@ class Start:
         if newY != '':
             newY = roundToTen(newY)
             self.rect.top = newY
+            
+    def stretch(self):
+        print('Not stretchable')
 
+    def edit(self):
+        pass
+        
 class Exit:
     def __init__(self, coord):
         self.name = 'Exit'
@@ -399,6 +455,11 @@ class Exit:
             newY = roundToTen(newY)
             self.rect.top = newY
 
+    def stretch(self):
+        print('Not stretchable')
+
+    def edit(self):
+        pass
 
 def DTQuit():
     pygame.quit()
@@ -419,7 +480,7 @@ print('Loading...')
 WX = 600
 WY = 400
 window = pygame.display.set_mode((WX, WY), 0, 32)
-txt = pygame.font.Font('cour.ttf', 20)
+txt = pygame.font.Font('cour.ttf', 15)
 txt.set_bold(True)
 
 level = Level(bmpFile, txtFile)

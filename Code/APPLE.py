@@ -298,7 +298,9 @@ do exactly what you'd think they'd do.
             if cmdList[0] == '+monster':
                 self.beasties.append(eval(cmdList[1])((int(cmdList[2]), int(cmdList[3])), cmdList[4], bool(cmdList[5])))
             if cmdList[0] == '+voice':
-                pass
+                self.voices.append(Voice(pygame.Rect(int(cmdList[1]), int(cmdList[2]), int(cmdList[3]), int(cmdList[4])),
+                                         cmdList[5],
+                                         pygame.Rect(int(cmdList[6]), int(cmdList[7]), int(cmdList[8]), int(cmdList[9])))
 
     def addMonster(self, monster):
         self.beasties.append(monster)
