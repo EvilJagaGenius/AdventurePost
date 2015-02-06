@@ -8,4 +8,4 @@ r0~*ACCESS DENIED*|Sector is inaccessible by elevator.  Locked by:  Ussalry Capt
 r1~Travel to the selected sector requires an access code.  Enter code here:
 r2~Shutting down...
 bye~r2
-addCmds~if self.state=='r1' and self.part==1: self.teleport=scenes.elevatorLock
+addCmds~if self.state=='r1' and self.part==1: self.teleport=APtalk.elevatorLock

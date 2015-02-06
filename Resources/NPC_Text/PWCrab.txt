@@ -7,4 +7,4 @@ q3~
 r0~
 r1~Come back anytime.
 bye~r1
-addCmds~if self.state=='r0' and self.part==0: self.teleport=scenes.onuKoro1
+addCmds~if self.state=='r0' and self.part==0: self.teleport=APtalk.onuKoro1

@@ -1,3 +1,3 @@
 o~You can come in... I guess...
 bye~None
-addCmds~if self.part==1: self.teleport=scenes.onuKoro11
+addCmds~if self.part==1: self.teleport=APtalk.onuKoro11

@@ -249,12 +249,8 @@ elevatorLock = Lock('5887930', 'elevatorLock')
 
 #APPLE levels
 Lvl1 = Level('Level1.bmp', 'Lvl1', 'Level1.txt', 'Img2.png')
-Lvl1.addVoice(Voice(pygame.Rect(40,360,40,40), "Okay, show me what you got.  Start free-running.  I'll see you at the exit.", pygame.Rect(240,310,100,100)))
-Lvl1.addVoice(Voice(pygame.Rect(290,300,40,40), "Try bouncing up between these pillars by pressing SPACE.", pygame.Rect(410,150,40,40)))
-Lvl1.addVoice(Voice(pygame.Rect(250,110,40,40), "Good!  Now wall-run across these plaid blocks (press SHIFT and SPACE).", pygame.Rect(190,70,60,200)))
-Lvl1.addVoice(Voice(pygame.Rect(680,200,40,40), "Punch these checkered blocks apart by pressing F.", pygame.Rect(0,0,0,0)))
 
-Lvl2 = Level('Level2.bmp', 'Lvl2', 'Level2.txt', 'Img2.png', POWAHI)
+Lvl2 = Level('Level2.bmp', 'Lvl2', 'Level2.txt', 'Img2.png')
 
 Lvl3 = Level('Level3.bmp', 'Lvl3', 'Level3.txt', 'OnuTunnel17.png', ONUWAHI)
 
@@ -264,18 +260,18 @@ Lvl5 = Level('Level5.bmp', 'Lvl5', 'Level5.txt', 'Fortress2.png', KOWAHI)
 
 #CutChapters, in chronological order
 chap1 = CutChapter('chapter1.txt', 'chap1')
-chap2 = CutChapter('chapter2.txt', 'chap2', 'player.add(scenes.Piataras_Letter)')
+chap2 = CutChapter('chapter2.txt', 'chap2', 'player.add(APtalk.Piataras_Letter)')
 chap3 = CutChapter('chapter3.txt', 'chap3')
 Kylae_Duel = CutChapter('Kylae_Duel.txt', 'Kylae_Duel')
 Kylae_Duel_pt2 = CutChapter('Kylae_Duel_pt2.txt', 'Kylae_Duel_pt2')
-chap4 = CutChapter('chapter4.txt', 'chap4', 'scenes.onuKoro3.addHotSpot(scenes.chap5, pygame.Rect(100,60,330,260), False, player); scenes.onuKoro3.delHotSpot(scenes.onuTunnel11, player); scenes.Kaj.editWords("kaj2.txt", player); scenes.OKCrab.editWords("OKCrab2.txt", player)')
+chap4 = CutChapter('chapter4.txt', 'chap4', 'APtalk.onuKoro3.addHotSpot(APtalk.chap5, pygame.Rect(100,60,330,260), False, player); APtalk.onuKoro3.delHotSpot(APtalk.onuTunnel11, player); APtalk.Kaj.editWords("kaj2.txt", player); APtalk.OKCrab.editWords("OKCrab2.txt", player)')
 chap5 = CutChapter('chapter5.txt', 'chap5')
-chap6_pt1 = CutChapter('chapter6_pt1.txt', 'chap6_pt1', 'scenes.lightMine1.addHotSpot(scenes.lightMine14, pygame.Rect(400,140,80,260), False, player); scenes.lightMine1.delHotSpot(scenes.lightMine3, player); scenes.lightMine2.addHotSpot(scenes.lightMine14, pygame.Rect(60,150,80,250), False, player), scenes.lightMine2.delHotSpot(scenes.lightMine3, player); scenes.Onepu.editWords("onepu4.txt", player);scenes.onuKoro3.addHotSpot(scenes.onuTunnel11, pygame.Rect(100,60,330,260), False, player); scenes.onuKoro3.delHotSpot(scenes.chap5, player)')
-chap6_pt2 = CutChapter('chapter6_pt2.txt', 'chap6_pt2', 'scenes.Damek.editWords("damek2.txt", player); scenes.Lab.editWords("lab2.txt", player)')
+chap6_pt1 = CutChapter('chapter6_pt1.txt', 'chap6_pt1', 'APtalk.lightMine1.addHotSpot(APtalk.lightMine14, pygame.Rect(400,140,80,260), False, player); APtalk.lightMine1.delHotSpot(APtalk.lightMine3, player); APtalk.lightMine2.addHotSpot(APtalk.lightMine14, pygame.Rect(60,150,80,250), False, player), APtalk.lightMine2.delHotSpot(APtalk.lightMine3, player); APtalk.Onepu.editWords("onepu4.txt", player);APtalk.onuKoro3.addHotSpot(APtalk.onuTunnel11, pygame.Rect(100,60,330,260), False, player); APtalk.onuKoro3.delHotSpot(APtalk.chap5, player)')
+chap6_pt2 = CutChapter('chapter6_pt2.txt', 'chap6_pt2', 'APtalk.Damek.editWords("damek2.txt", player); APtalk.Lab.editWords("lab2.txt", player)')
 chap7_pt1 = CutChapter('chapter7_pt1.txt', 'chap7_pt1')
 chap7_pt2 = CutChapter('chapter7_pt2.txt', 'chap7_pt2')
-fall = CutChapter('fall.txt', 'fall', 'player.delCompanion(scenes.cDamek); player.delCompanion(scenes.cNuparu)')
-regroup = CutChapter('regroup.txt', 'regroup', 'player.addCompanion(scenes.cDamek); scenes.cDamek.editWords("cDamek3.txt", player); player.addCompanion(scenes.cNuparu); scenes.cNuparu.editWords("cNuparu2.txt", player); scenes.fortress14.delHotSpot(self, player); scenes.fortress14.addHotSpot(scenes.fortress15, pygame.Rect(140,100,340,200), False, player)')
+fall = CutChapter('fall.txt', 'fall', 'player.delCompanion(APtalk.cDamek); player.delCompanion(APtalk.cNuparu)')
+regroup = CutChapter('regroup.txt', 'regroup', 'player.addCompanion(APtalk.cDamek); APtalk.cDamek.editWords("cDamek3.txt", player); player.addCompanion(APtalk.cNuparu); APtalk.cNuparu.editWords("cNuparu2.txt", player); APtalk.fortress14.delHotSpot(self, player); APtalk.fortress14.addHotSpot(APtalk.fortress15, pygame.Rect(140,100,340,200), False, player)')
 
 #NPCs
 Gadjati = NPC('Gadjati', None, 'gadjati.txt')
@@ -325,6 +321,7 @@ Empty_Bottle = Empty_Bottle()
 Water_Bottle = Water_Bottle()
 Pure_Water = Pure_Water()
 Piataras_Letter = PiatarasLetter()
+print('Items created!')
 
 centerRect = pygame.Rect(100, 200, 300, 100)
 

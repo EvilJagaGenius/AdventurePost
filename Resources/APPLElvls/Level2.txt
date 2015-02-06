@@ -1,2 +1,8 @@
-+monster|NuiJagaP|380|743|'r'|True
-+block|Block|280|740|30|30
++block|Block|0|0|740|40
++block|Block|140|690|70|20
++block|Block|140|790|550|50
++block|Block|190|710|20|60
++block|Block|590|110|100|20
++block|Block|0|40|140|800
++block|Block|690|40|50|810
++monster|NuiJagaP|380|743|1|0

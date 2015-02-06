@@ -6,4 +6,4 @@ q2~
 q3~
 r0~Thank you, Huki.  And hurry--whatever it was, it sounded urgent.  There might not be much time.
 bye~r0
-addCmds~if self.state=='o' and self.part==4: self.giveStuff(player, scenes.OnepusRing); scenes.Prospector.editWords('prospector2.txt', player)
+addCmds~if self.state=='o' and self.part==4: self.giveStuff(player, APtalk.OnepusRing); APtalk.Prospector.editWords('prospector2.txt', player)

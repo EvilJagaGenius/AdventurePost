@@ -9,4 +9,4 @@ r1~Got any cash?  No?  What the heck DO you have in that bag?  Nothing?|Oh well,
 q2~What is Po-Wahi?
 r3~Stay outta the sun!
 bye~r3
-addCmds~if self.state=="r1" and self.part==1:self.giveStuff(player, scenes.Lightstone)
+addCmds~if self.state=="r1" and self.part==1:self.giveStuff(player, APtalk.Lightstone)

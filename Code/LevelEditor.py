@@ -116,17 +116,18 @@ class Level:
             if i.name == 'BreakBlock':
                 newImage.set_at((i.rect.left // 10, i.rect.top // 10), (100,0,0))
             if i.name == 'Spike-8':
-                newImage.set_at((i.rect.left // 10, i.rect.top // 10), (25,0,0))
+                newImage.set_at((i.rect.left // 10, (i.rect.top // 10) + 1), (25,0,0))
             if i.name == 'Spike-4':
-                newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,25,0))
+                newImage.set_at(((i.rect.left // 10), i.rect.top // 10), (25,25,25))
             if i.name == 'Spike-2':
                 newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,0,25))
             if i.name == 'Spike-6':
-                newImage.set_at((i.rect.left // 10, i.rect.top // 10), (25,25,25))
+                newImage.set_at(((i.rect.left // 10) + 1, i.rect.top // 10), (0,25,0))
             if i.name == 'Health':
                 newImage.set_at((i.rect.left // 10, i.rect.top // 10), (0,100,0))
             if i.name in knownMonsters:
-                newFile.write('+monster|'+i.name+'|'+str(i.rect.left)+'|'+str(i.rect.top)+'|'+i.direction+'|'+str(i.mood)+'\n')
+                print('Saving monster')
+                newFile.write('+monster|'+i.name+'|'+str(i.rect.left)+'|'+str(i.rect.top)+'|'+str(i.direction)+'|'+str(i.mood)+'\n')
 
         for i in self.voices:
             newFile.write('+voice|'+str(i.rect.left)+'|'+str(i.rect.top)+'|'+str(i.rect.width)+'|'+str(i.rect.height)+'|'+i.string+'|'+str(i.delRect.left)+'|'+str(i.delRect.top)+'|'+str(i.delRect.width)+'|'+str(i.delRect.height)+'\n')
@@ -146,7 +147,7 @@ class Level:
                 self.blocks.append(Block(cmdList[1], pygame.Rect(int(cmdList[2]), int(cmdList[3]), int(cmdList[4]), int(cmdList[5]))))
             elif cmdList[0] == '+monster':
                 print('Adding monster')
-                self.monsters.append(Monster(cmdList[1], (int(cmdList[2]), int(cmdList[3])), cmdList[4], bool(cmdList[5])))
+                self.monsters.append(Monster(cmdList[1], (int(cmdList[2]), int(cmdList[3])), int(cmdList[4]), int(cmdList[5])))
             elif cmdList[0] == '+voice':
                 self.voices.append(Voice(pygame.Rect(int(cmdList[1]), int(cmdList[2]), int(cmdList[3]), int(cmdList[4])), cmdList[5], pygame.Rect(int(cmdList[6]), int(cmdList[7]), int(cmdList[8]), int(cmdList[9]))))
 
@@ -178,8 +179,13 @@ class Level:
         deltaX = 0
         deltaY = 0
         objects = ['Block("Block", pygame.Rect(roundToTen(self.origin[0]+mousePos[0]),roundToTen(self.origin[1]+mousePos[1]),10,10))',
-                   'Voice(pygame.Rect(roundToTen(self.origin[0]+mousePos[0]),roundToTen(self.origin[1]+mousePos[1]),10,10), "", pygame.Rect(roundToTen(self.origin[0]+mousePos[0]+10),roundToTen(self.origin[1]+mousePos[1]+10),10,10))']
-        tools = ['select', 'add']
+                   'Voice(pygame.Rect(roundToTen(self.origin[0]+mousePos[0]),roundToTen(self.origin[1]+mousePos[1]),10,10), "", pygame.Rect(roundToTen(self.origin[0]+mousePos[0]+10),roundToTen(self.origin[1]+mousePos[1]+10),10,10))',
+                   'Health((roundToTen(self.origin[0]+mousePos[0]), roundToTen(self.origin[1]+mousePos[1])))',
+                   'Spike(8, (roundToTen(self.origin[0]+mousePos[0]), roundToTen(self.origin[1]+mousePos[1])))',
+                   'Spike(6, (roundToTen(self.origin[0]+mousePos[0]), roundToTen(self.origin[1]+mousePos[1])))',
+                   'Spike(4, (roundToTen(self.origin[0]+mousePos[0]), roundToTen(self.origin[1]+mousePos[1])))',
+                   'Spike(2, (roundToTen(self.origin[0]+mousePos[0]), roundToTen(self.origin[1]+mousePos[1])))']
+        tools = ['select', 'add', 'delete']
         usedTool = 0
         usedObject = 1
         delPress =False
@@ -254,23 +260,29 @@ class Level:
             if rightClicked:
                 self.moveOrigin(deltaX, deltaY)
             if leftClicked and releaseLeftClick:
-                releaseLeftClick = False
-                if tools[usedTool] == 'select':
-                    for i in self.objects:
-                        dectRect = pygame.Rect(i.rect.left - self.origin[0], i.rect.top - self.origin[1], i.rect.width, i.rect.height)
-                        if dectRect.collidepoint(mousePos):
-                            if i != selected:
-                                selected = i
-                    for i in self.voices:
-                        dectRect = pygame.Rect(i.rect.left - self.origin[0], i.rect.top - self.origin[1], i.rect.width, i.rect.height)
-                        dectRect2 = pygame.Rect(i.delRect.left - self.origin[0], i.delRect.top - self.origin[1], i.delRect.width, i.delRect.height)
-                        if dectRect.collidepoint(mousePos) or dectRect2.collidepoint(mousePos):
-                            if i != selected:
-                                selected = i
+                
+                for i in self.objects:
+                    dectRect = pygame.Rect(i.rect.left - self.origin[0], i.rect.top - self.origin[1], i.rect.width, i.rect.height)
+                    if dectRect.collidepoint(mousePos):
+                        if tools[usedTool] == 'select':
+                            selected = i
+                            releaseLeftClick = False
+                        elif tools[usedTool] == 'delete':
+                            self.objects.remove(i)
+                for i in self.voices:
+                    dectRect = pygame.Rect(i.rect.left - self.origin[0], i.rect.top - self.origin[1], i.rect.width, i.rect.height)
+                    dectRect2 = pygame.Rect(i.delRect.left - self.origin[0], i.delRect.top - self.origin[1], i.delRect.width, i.delRect.height)
+                    if dectRect.collidepoint(mousePos) or dectRect2.collidepoint(mousePos):
+                        if tools[usedTool] == 'select':
+                            selected = i
+                            releaseLeftClick = False
+                        elif tools[usedTool] == 'delete':
+                            self.voices.remove(i)
 
                 
 
                 if tools[usedTool] == 'add':
+                    releaseLeftClick = False
                     if objects[usedObject].startswith('Voice'):
                         self.voices.append(eval(objects[usedObject]))
                     else:
@@ -296,13 +308,26 @@ class Level:
             else:
                 window.blit(txt.render('Nothing selected', True, (255,255,255)), (0,0))
             if leftPress:
-                usedObject = 0
+                if usedObject > 0:
+                    usedObject -= 1
+                else:
+                    usedObject = len(objects)-1
             if rightPress:
-                usedObject = 1
+                if usedObject < len(objects)-1:
+                    usedObject += 1
+                else:
+                    usedObject = 0
+                
             if downPress:
-                usedTool = 1
+                if usedTool > 0:
+                    usedTool -= 1
+                else:
+                    usedTool = len(tools)-1
             if upPress:
-                usedTool = 0
+                if usedTool < len(tools)-1:
+                    usedTool += 1
+                else:
+                    usedTool = 0
             window.blit(txt.render(str((self.origin[0] + mousePos[0], self.origin[1] + mousePos[1])), True, (255,255,255)), (0, 20))
             window.blit(txt.render(tools[usedTool], True, (255,255,255)), (0, 40))
             window.blit(txt.render(objects[usedObject], True, (255,255,255)), (0, 60))
@@ -343,14 +368,14 @@ class Block:
 
     def move(self):
         print('\nCoords will be rounded to 10.')
-        newX = input('New X coord:')
-        newY = input('New Y coord:')
+        newX = input('Move X how far?')
+        newY = input('Move Y how far?')
         if newX != '':
             newX = roundToTen(newX)
-            self.rect.left = newX
+            self.rect.left += newX
         if newY != '':
             newY = roundToTen(newY)
-            self.rect.top = newY
+            self.rect.top += newY
 
     def edit(self):
         print('\n 1) Block')
@@ -379,14 +404,14 @@ class Health:
 
     def move(self):
         print('\nCoords will be rounded to 10.')
-        newX = input('New X coord:')
-        newY = input('New Y coord:')
+        newX = input('Move X how far?')
+        newY = input('Move Y how far?')
         if newX != '':
             newX = roundToTen(newX)
-            self.rect.left = newX
+            self.rect.left += newX
         if newY != '':
             newY = roundToTen(newY)
-            self.rect.top = newY
+            self.rect.top += newY
 
     def stretch(self):
         print('Not stretchable')
@@ -410,22 +435,22 @@ class Voice:
 
     def move(self):
         print('\nCoords will be rounded to 10.')
-        newX = input("Main rect's new X coord:")
-        newY = input("Main rect's new Y coord:")
+        newX = input("Push main rect how far on the X-axis?")
+        newY = input("Push main rect how far on the Y-axis?")
         if newX != '':
             newX = roundToTen(newX)
-            self.rect.left = newX
+            self.rect.left += newX
         if newY != '':
             newY = roundToTen(newY)
-            self.rect.top = newY
-        newX = input("\ndelRect's new X coord:")
-        newY = input("delRect's new Y coord:")
+            self.rect.top += newY
+        newX = input("\nPush delRect how far on the X-axis?")
+        newY = input("Push delRect how far on the Y-axis?")
         if newX != '':
             newX = roundToTen(newX)
-            self.delRect.left = newX
+            self.delRect.left += newX
         if newY != '':
             newY = roundToTen(newY)
-            self.delRect.top = newY
+            self.delRect.top += newY
 
     def stretch(self):
         
@@ -456,6 +481,7 @@ class Voice:
         self.delRect.height += deltaY        
 
         self.mainSprite = pygame.transform.scale(self.mainSprite, (self.rect.width, self.rect.height))
+        self.delSprite = pygame.transform.scale(self.delSprite, (self.delRect.width, self.delRect.height))
 
     def edit(self):
         print('\nOld string:' + self.string)
@@ -471,12 +497,12 @@ class Spike:
         self.name = 'Spike'
         self.sprite = imgLoad('Spike.bmp', 'a').convert()
         self.sprite.set_colorkey((0,255,0))
-        if side == 4:
-            self.name += '-4'
-            self.rect = pygame.Rect(position[0]-10, position[1], 20, 10)
-        elif side == 6:
+        if side == 6:
             self.name += '-6'
             self.sprite = pygame.transform.flip(self.sprite, True, False)
+            self.rect = pygame.Rect(position[0]-10, position[1], 20, 10)
+        elif side == 4:
+            self.name += '-4'
             self.rect = pygame.Rect(position[0], position[1], 20, 10)
         elif side == 2:
             self.name += '-2'
@@ -489,20 +515,37 @@ class Spike:
 
     def move(self):
         print('\nCoords will be rounded to 10.')
-        newX = input('New X coord:')
-        newY = input('New Y coord:')
+        newX = input('Push horizontally:')
+        newY = input('Push vertically:')
         if newX != '':
             newX = roundToTen(newX)
-            self.rect.left = newX
+            self.rect.left += newX
         if newY != '':
             newY = roundToTen(newY)
-            self.rect.top = newY
+            self.rect.top += newY
 
     def stretch(self):
         print('Not stretchable')
 
     def edit(self):
-        print('No special edits')
+        newSide = input('\nSwitch side to:')
+        self.sprite = imgLoad('Spike.bmp', 'a').convert()
+        if newSide == '6':
+            self.name = 'Spike-6'
+            self.sprite = pygame.transform.flip(self.sprite, True, False)
+            self.rect = pygame.Rect(self.rect.left-10, self.rect.top, 20, 10)
+        elif newSide == '4':
+            self.name = 'Spike-4'
+            self.rect = pygame.Rect(self.rect.left, self.rect.top, 20, 10)
+        elif newSide == '2':
+            self.name = 'Spike-2'
+            self.sprite = pygame.transform.rotate(self.sprite, 90)
+            self.rect = pygame.Rect(self.rect.left, self.rect.top, 10, 20)
+        elif newSide == '8':
+            self.name = 'Spike-8'
+            self.sprite = pygame.transform.rotate(self.sprite, 270)
+            self.rect = pygame.Rect(self.rect.left, self.rect.top-10, 10, 20)
+
         
 class Monster:
     def __init__(self, name, coord, direction, mood):
@@ -528,7 +571,22 @@ class Monster:
         print('Not stretchable')
 
     def edit(self):
-        print('No special edits')
+        print('\nChange mood?  0 = calm, 1 = angry.  Currently ' + str(self.mood))
+        moodSwap = input('Y/N:').lower()
+        print('Change direction?  0 = left, 1 = right.  Currently ' + str(self.direction))
+        dirSwap = input('Y/N:').lower()
+        if moodSwap.startswith('y'):
+            print('Changing mood')
+            if self.mood == 0:
+                self.mood = 1
+            elif self.mood == 1:
+                self.mood = 0
+        if dirSwap.startswith('y'):
+            print('Changing direction')
+            if self.direction == 0:
+                self.direction = 1
+            elif self.direction == 1:
+                self.direction = 0
     
 class Start:
     def __init__(self, coord):
@@ -587,9 +645,9 @@ def roundToTen(num):
 
 
 print(".bmp file name")
-bmpFile = 'Level1.bmp'
+bmpFile = 'Level5.bmp'
 print(".txt file name")
-txtFile = 'Level1.txt'
+txtFile = 'Level5.txt'
 print('Loading...')
 
 WX = 600

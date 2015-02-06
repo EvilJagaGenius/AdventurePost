@@ -9,4 +9,4 @@ r1~Look out for Rahi in the tunnels!  It's dark down here!
 r2~Huh?  Whaddya talking about?|(Someone being armed and dangerous!  Onepu told me to come here.)|What?  No armed and dangerous people here, not unless... hold on...|Tehutti?  Damek?  I thought the Ussalry wasn't needed anymore... what's going on?|
 r3~Oh yes.  Nests upon nests, especially down further in.  It's hotter down there, so they can thrive.  As we've been digging, we've had to bring in Ussalry teams in to defend the miners, if we can't detect the nests.|Lately, though, we've directed our attentions to digging a new shaft, so all the workers are over at that site.  The Ussalry isn't needed right now, so they're all back in Onu-Koro.
 bye~r1
-addCmds~if self.state=='r2' and self.part==4: self.teleport=scenes.chap3
+addCmds~if self.state=='r2' and self.part==4: self.teleport=APtalk.chap3

@@ -9,4 +9,4 @@ r1~Now that you mention it, they did seem awfully friendly when Ahkmou was aroun
 r2~The left, towards Onu-Koro.  I thought it was strange, but he may have been going to Kelati to borrow his crab.
 r3~Sure, hold on--
 bye~None
-addCmds~if self.state=='r3' and self.part==1: self.teleport=scenes.chap6_pt1
+addCmds~if self.state=='r3' and self.part==1: self.teleport=APtalk.chap6_pt1

@@ -8,4 +8,4 @@ r0~Name's Kelati.  *Lieutenant* Kelati, Ussalry Class 2 Guard, Section 3.  Over 
 r2~Yes siree.  Just hop on and she'll come back on her own.  Say 'lo to Kaj for me, he's on that road, near the lava pumps.|
 r1~Fare thee well, chum!
 bye~r1
-addCmds~if self.state=='r2' and self.part==1: self.teleport=scenes.taKoro2
+addCmds~if self.state=='r2' and self.part==1: self.teleport=APtalk.taKoro2

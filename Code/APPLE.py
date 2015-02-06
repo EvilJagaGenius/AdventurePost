@@ -11,24 +11,32 @@ class NuiJagaP:
     #My usernamesake the Jaga
     #Has a sprite, can move from side to side.
     #NTS: Give it stinging and goober-throwing attacks.
-    def __init__(self, coord, direction, angry=False):
+    def __init__(self, coord, direction, angry=0):
         self.spawn = coord
-        self.startDirection = direction
-        self.startMood = angry
+        
         self.spriteL = imgLoad('NuiJagaP.bmp', 'a').convert()
         self.spriteL.set_colorkey((0,255,0))
         self.spriteR = pygame.transform.flip(self.spriteL, True, False).convert()
         self.sprite = self.spriteL
         self.rect = pygame.Rect(coord[0], coord[1], self.sprite.get_width(), self.sprite.get_height())
         self.KOd = False
-        if angry:
+        if angry == 1:
             self.angry = True
-        else:
+        elif angry == 0:
             self.angry = False
-        self.direction = direction
+        if direction == 0:
+            self.direction = 'l'
+        elif direction == 1:
+            self.direction = 'r'
+        self.startMood = self.angry
+        self.startDirection = self.direction
         self.pointL = (self.rect.left, self.rect.bottom -5)
         self.pointR = (self.rect.right, self.rect.bottom -5)
         self.pointD = (self.rect.center[0], self.rect.bottom +1)
+        print('startMood = ' + str(self.startMood))
+        print('mood = ' + str(self.angry))
+        print('startDirection = ' + self.direction)
+        print('direction = ' + self.direction)
         
 
     def move(self, target, blocks):
@@ -44,7 +52,7 @@ class NuiJagaP:
             elif (target[0] > self.rect.center[0]) and 'R' not in touching:
                 self.direction = 'r'
                 self.rect.left += 1
-        elif (self.direction == 'r' and target[0] > self.rect.center[0]) or (self.direction == 'l' and target[0] < self.rect.center[0]):
+        if (self.direction == 'r' and target[0] > self.rect.center[0]) or (self.direction == 'l' and target[0] < self.rect.center[0]):
             self.angry = True
         self.pointL = (self.rect.left, self.rect.bottom -5)
         self.pointR = (self.rect.right, self.rect.bottom -5)
@@ -229,6 +237,7 @@ class WallRunBlock:
                 if self.sprite.get_at((x, y)) == (100,100,100):
                     self.sprite.set_at((x, y), colorScheme[1])
         self.rect = rect
+        self.sprite = pygame.transform.scale(self.sprite, (self.rect.width, self.rect.height))
 
 class BreakBlock:
     def __init__(self, rect, colorScheme=POWAHI):
@@ -294,13 +303,21 @@ do exactly what you'd think they'd do.
             line = line.strip()
             cmdList = line.split('|')
             if cmdList[0] == '+block':
-                self.blocks.append(eval(cmdList[1])(pygame.Rect(int(cmdList[2]), int(cmdList[3]), int(cmdList[4]), int(cmdList[5])), self.colorScheme))
+                if cmdList[1] == 'Block':
+                    self.blocks.append(eval(cmdList[1])(pygame.Rect(int(cmdList[2]), int(cmdList[3]), int(cmdList[4]), int(cmdList[5])), self.colorScheme))
+                if cmdList[1] == 'WallRunBlock':
+                    self.wallRuns.append(eval(cmdList[1])(pygame.Rect(int(cmdList[2]), int(cmdList[3]), int(cmdList[4]), int(cmdList[5])), self.colorScheme))
+                if cmdList[1] == 'BreakBlock':
+                    self.breaks.append(eval(cmdList[1])(pygame.Rect(int(cmdList[2]), int(cmdList[3]), int(cmdList[4]), int(cmdList[5])), self.colorScheme))
+
             if cmdList[0] == '+monster':
-                self.beasties.append(eval(cmdList[1])((int(cmdList[2]), int(cmdList[3])), cmdList[4], bool(cmdList[5])))
+                print(cmdList[4])
+                print(cmdList[5])
+                self.beasties.append(eval(cmdList[1])((int(cmdList[2]), int(cmdList[3])), int(cmdList[4]), int(cmdList[5])))
             if cmdList[0] == '+voice':
                 self.voices.append(Voice(pygame.Rect(int(cmdList[1]), int(cmdList[2]), int(cmdList[3]), int(cmdList[4])),
                                          cmdList[5],
-                                         pygame.Rect(int(cmdList[6]), int(cmdList[7]), int(cmdList[8]), int(cmdList[9])))
+                                         pygame.Rect(int(cmdList[6]), int(cmdList[7]), int(cmdList[8]), int(cmdList[9]))))
 
     def addMonster(self, monster):
         self.beasties.append(monster)
@@ -329,6 +346,13 @@ do exactly what you'd think they'd do.
         return viewSurf
 
     def play(self, player, junkCoord):
+        self.beasties = []
+        self.blocks = []
+        self.wallRuns = []
+        self.breaks = []
+        self.healths = []
+        self.voices = []
+        self.spikes = []
         for x in range(self.source.get_width()):
             for y in range(self.source.get_height()):
                 if self.source.get_at((x, y)) == (0,0,0):
@@ -681,7 +705,6 @@ do exactly what you'd think they'd do.
             dataSurf.blit(cTxt.render('Ammo: 999x99 Reloads', False, (255,255,255)), (0,24))
 
             if playerHealth <= 0: #Oh noes
-                self.reset()
                 return (self, player, (0,0))
             
             #Slide down a wall at 1 pixel per frame

@@ -59,7 +59,7 @@ class Scene: #Note:  Tap 'E' to see what scene you're in
                 return (CHS, player, mousePos)
             elif CNPC != False:
                 pygame.mouse.set_visible(True)
-                teleport = CNPC.talk(player, self.bkg)
+                teleport = CNPC.talk(player, self.bkg, self.name)
                 if teleport != None:
                     return (teleport, player, mousePos)
             if dispPack:

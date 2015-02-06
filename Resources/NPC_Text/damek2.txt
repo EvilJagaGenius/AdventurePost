@@ -9,4 +9,4 @@ r1~Onu-Koro the town is a center of trade and science.  The island's best engine
 r2~Enjoy the sights!
 r3~Ah, yes.  Onepu told me about the mission.  I can come with you.  I know how to work the elevators to get to Ko-Wahi, and a path through the tunnels.|We'll need Nuparu, too.  Let's go over next door to the lab and root him out of there.
 bye~r2
-addCmds~if self.state=='r3' and self.part==2: player.addCompanion(scenes.cDamek)
+addCmds~if self.state=='r3' and self.part==2: player.addCompanion(APtalk.cDamek)

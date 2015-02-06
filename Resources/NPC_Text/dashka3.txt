@@ -4,5 +4,5 @@ q0~
 q1~
 q2~
 q3~
-addCmds~if self.part==3: self.giveStuff(player, scenes.Widgets); player.increase(scenes.Widgets, 25); self.editWords('dashka4.txt', player)
+addCmds~if self.part==3: self.giveStuff(player, APtalk.Widgets); player.increase(APtalk.Widgets, 25); self.editWords('dashka4.txt', player)
 bye~none

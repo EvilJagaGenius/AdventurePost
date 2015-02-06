@@ -1,3 +1,3 @@
 o~Strange... so it is true... the Shadow Matoran are leading the Rahi.  And the Makuta is most likely not killing my men, as I first believed, but using this Shadow Plague to enslave them.|It is horrible, but there is hope:  if they are mearly infected, as with any common Rahi, it may still be possible to save them.|Take this ring as proof I acknowledge this warning and give Captain Piatara my thanks.  Go to Onepu and show this ring to him.  He will give you a similar ring to take to your Captain.|
 bye~none
-addCmds~if self.state=='o' and self.part==3: self.giveStuff(player, scenes.JalasRing); scenes.Onepu.editWords('onepu3.txt', player); self.state='o'; self.part=0; self.editWords('jala.txt', player)
+addCmds~if self.state=='o' and self.part==3: self.giveStuff(player, APtalk.JalasRing); APtalk.Onepu.editWords('onepu3.txt', player); self.state='o'; self.part=0; self.editWords('jala.txt', player)

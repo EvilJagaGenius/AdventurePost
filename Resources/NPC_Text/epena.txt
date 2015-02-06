@@ -9,4 +9,4 @@ r2~Ohhhh.  Nasty place...  besides being overly dark and foul, the place has a r
 q3~Goodbye.  I'll find the Captain next.
 r3~Say hi to the Captain for me!
 bye~r3
-addCmds~if self.state=='r3' and self.part==1: scenes.Midak.editWords("midak2.txt", player)
+addCmds~if self.state=='r3' and self.part==1: APtalk.Midak.editWords("midak2.txt", player)

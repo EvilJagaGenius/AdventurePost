@@ -8,4 +8,4 @@ r0~Huh.  It must have gone straight into his neck.  But it doesn't look like he 
 r1~North March Viewscreen Terminal Alpha: 1447 Hours|*SYSTEM LOCKED* Last logon session:  1032 Hours
 r2~Weird... wait, did a door just open?
 bye~r2
-addCmds~if self.state=='o' and self.part==2: self.giveStuff(player, scenes.TranqDart); scenes.fortress13.addHotSpot(scenes.fortress14, pygame.Rect(140,100,340,200), False, player); scenes.fortress13.delHotSpot(scenes.fortress9, player)
+addCmds~if self.state=='o' and self.part==2: self.giveStuff(player, APtalk.TranqDart); APtalk.fortress13.addHotSpot(APtalk.fortress14, pygame.Rect(140,100,340,200), False, player); APtalk.fortress13.delHotSpot(APtalk.fortress9, player)

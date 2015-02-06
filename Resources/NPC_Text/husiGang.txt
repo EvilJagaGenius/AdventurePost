@@ -7,4 +7,4 @@ r1~(Kakama) Yeah!  Like a boss!
 q2~
 q3~
 bye~r1
-addCmds~if self.state=='r1' and self.part==1: scenes.Ahkmou.editWords('ahkmou2.txt', player)
+addCmds~if self.state=='r1' and self.part==1: APtalk.Ahkmou.editWords('ahkmou2.txt', player)

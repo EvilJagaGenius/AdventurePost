@@ -9,4 +9,4 @@ r1~Ah, that because my mind is fatigued by this blatant rejection of the Arts.  
 r3~Farewell, Huki!
 r2~Thank you, Huki, thank you!  Take this bottle and fill it up at stream.  Then, find way to heat it up.  Bring it back to me and I give you much widgets, yah?  Of course yah.
 bye~r3
-addCmds~if (self.state=='r2') and (self.part==1): self.giveStuff(player, scenes.Empty_Bottle); self.editWords('dashka2.txt', player)
+addCmds~if (self.state=='r2') and (self.part==1): self.giveStuff(player, APtalk.Empty_Bottle); self.editWords('dashka2.txt', player)
