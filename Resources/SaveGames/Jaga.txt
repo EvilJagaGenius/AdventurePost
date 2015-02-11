@@ -1,2 +1,2 @@
-scenes.chap7_pt2
+scenes.chap4
 Player("Jaga",0,[scenes.Lightstone.setAmt(1),scenes.Piataras_Letter.setAmt(1),scenes.TranqDart.setAmt(1),])

@@ -45,6 +45,8 @@ def txtLoad(txtFile, mode):
         folder = 'SaveGames'
     elif mode == 'a':
         folder = 'APPLElvls'
+    elif mode == 'au':
+        folder = 'Audio'
     if folder != None:
         filePath = os.path.join('..', 'Resources', folder, txtFile)
         return filePath

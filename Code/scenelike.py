@@ -177,7 +177,7 @@ class Scene: #Note:  Tap 'E' to see what scene you're in
 
 
 class CutChapter:
-    def __init__(self, txtFile, name, addCmds=''):
+    def __init__(self, txtFile, name, addCmds='', audio=None):
         #This deserves some explanation, so I'll try my best.
 #I can't do animation to save my life.  But I can write stories.  That's why
 #I joined the BMPRPG.  What this does is instead of showing a cutscene to
@@ -188,14 +188,16 @@ class CutChapter:
 #addCmds is a string that will be executed at the end of viewing the story, left blank by default.
         filePath = txtLoad(txtFile, 'c')
         self.txt = open(filePath, 'r')
-        #Code will create a surface containing the story's text
         self.endScene = None
                             
-        #End story code
         self.addCmds = addCmds
         self.name = 'scenes.' + name
 
-
+        if audio != None:
+            self.audio = txtLoad(audio, 'au')
+        else:
+            self.audio = None
+            
     def extend(self):
         #Extends self.storySurf by 18 pixels down.
         height = self.storySurf.get_height()
@@ -212,6 +214,9 @@ class CutChapter:
         self.storySurf.fill((0,0,0))
         x = 0
         y = 0
+        if self.audio != None:
+            pygame.mixer.music.load(self.audio)
+            pygame.mixer.music.play()
         for pg in self.txt: #pg for paragraph, paragraphs will look like they're all on one line in the .txt file
             pg = pg.split(' ')
             for word in pg:
@@ -255,6 +260,7 @@ class CutChapter:
                 if event.type == KEYUP:
                     if event.key == K_RETURN:
                         exec(self.addCmds)
+                        pygame.mixer.music.stop()
                         return (self.endScene, player, pygame.mouse.get_pos())
                     if event.key == K_UP:
                         moveUp = True
