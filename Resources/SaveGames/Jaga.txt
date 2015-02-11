@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 scenes.chap4
+=======
+scenes.fortress12
+>>>>>>> e15bd7b50b3f7307e80f394eba988a976d2d6d57
 Player("Jaga",0,[scenes.Lightstone.setAmt(1),scenes.Piataras_Letter.setAmt(1),scenes.TranqDart.setAmt(1),])
