@@ -829,7 +829,7 @@ onuKoro12.addHotSpot(onuKoro14, pygame.Rect(410,190,100,150))
 onuKoro12.addHotSpot(onuKoro13, leftRect)
 onuKoro12.addHotSpot(onuKoro9, rightRect)
 
-onuKoro13.addHotSpot(onuKoro7, centerRect)
+onuKoro13.addHotSpot(onuKoro5, centerRect)
 onuKoro13.addHotSpot(onuKoro12, rightRect)
 onuKoro13.addHotSpot(onuKoro10, leftRect)
 
@@ -970,7 +970,7 @@ fortress9.addHotSpot(fortress6, rightRect)
 fortress9.addHotSpot(fortress7, leftRect)
 
 fortress10.addHotSpot(fortress8, pygame.Rect(200,70,200,200))
-fortress10.addHotSpot(fortress12, rightRect)
+fortress10.addHotSpot(fortress12, pygame.Rect(450,50,150,350))
 fortress10.addHotSpot(fortress11, leftRect)
 
 fortress11.addHotSpot(fortress10, rightRect)

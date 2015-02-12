@@ -67,7 +67,7 @@ class Scene: #Note:  Tap 'E' to see what scene you're in
             if dispPals:
                 player.dispCompanions(self.name)
             if editMode:
-                window.blit(sTxt.render(currentScene, True, (255,51,0)), (0,WY-40))
+                window.blit(sTxt.render(self.name, True, (255,51,0)), (0,WY-40))
                 window.blit(sTxt.render(str(mousePos), True, (255,51,0)), (0,WY-50))
             for i in self.hotSpots:
                 if i[1].collidepoint(mousePos):
