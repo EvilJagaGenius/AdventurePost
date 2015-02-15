@@ -97,7 +97,7 @@ def loadGame():
     games = []
     mousePos = pygame.mouse.get_pos()
     for i in os.listdir(os.path.join('..', 'Resources', 'SaveGames')):
-        if not i.endswith('edits.txt'):
+        if not i.endswith('edits.txt') and i.endswith('.txt'):
             if len(games) < 8:
                 games.append(i)
     button0 = pygame.Rect(0,0,300,100)
@@ -200,7 +200,7 @@ class Player:
         self.bar = imgLoad('InventBar.bmp', 'ic').convert()
         self.bar = pygame.transform.scale(self.bar, (WX, 130))
         self.bar.set_colorkey((0, 255, 0))
-        self.cBar = imgLoad('palBar.bmp', 'ic').convert()
+        self.cBar = imgLoad('PalBar.bmp', 'ic').convert()
         self.cBar = pygame.transform.scale(self.cBar, (150,130))
         self.cBar.set_colorkey((0,255,0))
         self.companions = []
