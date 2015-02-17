@@ -1,2 +1,2 @@
-scenes.TradersHut
-Player("Jaga",0,[scenes.Lightstone.setAmt(1),scenes.Piataras_Letter.setAmt(1),scenes.TranqDart.setAmt(1),])
+scenes.TradersHut_Outside
+Player("Jaga",0,[])

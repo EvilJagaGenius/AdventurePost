@@ -238,6 +238,7 @@ fortress21 = Scene('Fortress21.png', 'fortress21')
 fortress22 = Scene('Fortress22.png', 'fortress22')
 #Miscellaneous
 TradersHut = Scene('TradersHut.png', 'TradersHut')
+TradersHut_Outside = Scene('TradersHut_Outside.png', 'TradersHut_Outside')
 PiatarasHut = Scene('PiatarasHut.png', 'PiatarasHut')
 OnewasHut = Scene('Onewa.png', 'OnewasHut')
 poBoat = Scene('PoWahiBoat.png', 'poBoat')
@@ -273,6 +274,7 @@ chap7_pt1 = CutChapter('chapter7_pt1.txt', 'chap7_pt1', '', 'Post7_pt1.ogg')
 chap7_pt2 = CutChapter('chapter7_pt2.txt', 'chap7_pt2', '', 'Post7_pt2.ogg')
 fall = CutChapter('fall.txt', 'fall', 'player.delCompanion(APtalk.cDamek); player.delCompanion(APtalk.cNuparu)')
 regroup = CutChapter('regroup.txt', 'regroup', 'player.addCompanion(APtalk.cDamek); APtalk.cDamek.editWords("cDamek3.txt", player); player.addCompanion(APtalk.cNuparu); APtalk.cNuparu.editWords("cNuparu2.txt", player); APtalk.fortress14.delHotSpot(self, player); APtalk.fortress14.addHotSpot(APtalk.fortress15, pygame.Rect(140,100,340,200), False, player)')
+chap8 = CutChapter('chapter8.txt', 'chap8', 'APtalk.TradersHut.addHotSpot(APtalk.TradersHut_Outside, pygame.Rect(500,80,100,160))')
 
 #NPCs
 Gadjati = NPC('Gadjati', None, 'gadjati.txt')
@@ -307,6 +309,8 @@ OKElevator = NPC('OKElevator', None, 'OKElevator.txt')
 KWElevator = NPC('KWElevator', None, 'KWElevator.txt')
 closet = NPC('closet', None, 'closet.txt')
 KOdGuard = NPC('KOdGuard', None, 'KOdGuard.txt')
+Rama = NPC('Rama', None, 'rama.txt')
+Trader = NPC('Trader', None, 'trader.txt')
 #Comapnions
 cDamek = Companion('cDamek', 'cDamek.txt', 'CDamek.png', 'Damek')
 cNuparu = Companion('cNuparu', 'cNuparu.txt', 'CNuparu.png', 'Nuparu')
@@ -1006,6 +1010,11 @@ fortress21.returnSpot(fortress20)
 
 fortress22.addHotSpot(chap7_pt1, pygame.Rect(140,100,340,200))
 
+TradersHut.addNPC(Trader, pygame.Rect(325,150,100,100))
+
+TradersHut_Outside.returnSpot(TradersHut)
+TradersHut_Outside.addNPC(Rama, pygame.Rect(200,120,200,150))
+
 OnepusHut.returnSpot(onuKoro1)
 OnepusHut.addNPC(Onepu, pygame.Rect(140,160,320,220))
 
@@ -1035,6 +1044,7 @@ Kylae_Duel.addTarget(Kylae_Duel_pt2)
 Kylae_Duel_pt2.addTarget(Bomb)
 fall.addTarget(fortressEntrance)
 regroup.addTarget(fortress15)
+chap8.addTarget(TradersHut)
 Bomb.addTargets(chap4, Kylae_Duel_pt2)
 elevatorLock.addTargets(onuElevator2, onuElevator1)
 

@@ -1,0 +1,9 @@
+o~Man, that Trader keeps weird pets...
+m~*bzzzzzzzzzzzzzzzzzz*
+q0~Well, aren't you Mr. Big Fat and Nasty.
+r0~*swipe*  AAUGH!  Bad idea...
+q1~Leave
+r1~I'm gonna think this over a little more...
+q2~
+q3~
+bye~r1
