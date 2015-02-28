@@ -1,2 +1,2 @@
-scenes.fortress25
+scenes.fortress23
 Player("Jaga",0,[])

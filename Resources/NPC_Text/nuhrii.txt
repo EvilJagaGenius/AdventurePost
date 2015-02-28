@@ -1,0 +1,10 @@
+o~Good day, traveler.
+m~How may I be of assistance to a Po-Matoran?
+q0~Goodbye.
+q1~Who are you?
+q2~Can you forge me something?
+q3~
+r0~A pleasure meeting you.
+r1~Pfc. Nuhrii of North March Company Alpha!  At your service!|I'm the local blacksmith as well.  I make tools for the rest of the Guardsmen and make sure they're in good condition.  It's an art in itself.
+r2~I can forge a lot of things, the object in question is...?|(Well... it's SUPPOSED to be a mining tool, but it would make an awesome sword...ish...thingy.)|And you would trust your life to this... mining tool?|(It's already saved my life once...)|Well, why didn't you just SAY that, here, hand it over!  Ah, yes, I can see the design... this shall make an excellent blade!  Perfect...|(Hours later) There!  It is finished.  A weapon for dueling and defense.  I call it the hammer-hatchet.  May it serve you well.
+bye~r0

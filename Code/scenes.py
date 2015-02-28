@@ -319,6 +319,8 @@ KOdGuard = NPC('KOdGuard', None, 'KOdGuard.txt')
 Rama = NPC('Rama', None, 'rama.txt')
 Trader = NPC('Trader', None, 'trader.txt')
 FortressNuparu = NPC('FortressNuparu', None, 'nuparu2.txt', 'NuparuSprite.png')
+FortressDamek = NPC('FortressDamek', None, 'damek3.txt', 'DamekSprite.png')
+Nuhrii = NPC('Nuhrii', None, 'nuhrii.txt', 'NuhriiSprite.png')
 #Comapnions
 cDamek = Companion('cDamek', 'cDamek.txt', 'CDamek.png', 'Damek')
 cNuparu = Companion('cNuparu', 'cNuparu.txt', 'CNuparu.png', 'Nuparu')
@@ -330,6 +332,9 @@ Koli_Ball = InventoryItem('KoliBall.bmp', 'Koli_Ball', 'Koli Ball')
 JalasRing = InventoryItem('JalasRing.bmp', "JalasRing", "Jala's Ring")
 OnepusRing = InventoryItem('OnepusRing.bmp', "OnepusRing", "Onepu's Ring")
 TranqDart = InventoryItem('TranqDart.bmp', 'TranqDart', '???')
+Plate = InventoryItem('Plate.png', 'Plate', 'Plate of... something')
+Disk = InventoryItem('Disk.png', 'Disk')
+HammerHatchet = InventoryItem('HammerHatchet.png', 'HammerHatchet', 'Hammer-Hatchet')
 Empty_Bottle = Empty_Bottle()
 Water_Bottle = Water_Bottle()
 Pure_Water = Pure_Water()
@@ -1023,11 +1028,13 @@ fortress23.addHotSpot(fortress26, rightRect)
 fortress23.addHotSpot(fortress25, pygame.Rect(330,140,100,150))
 
 fortress24.returnSpot(fortress23)
+fortress24.addNPC(Nuhrii, pygame.Rect(200,200,150,120))
 
 fortress25.returnSpot(fortress23)
 fortress25.addNPC(FortressNuparu, pygame.Rect(300,200,100,100))
 
 fortress26.returnSpot(fortress23)
+fortress26.addNPC(FortressDamek, pygame.Rect(300,200,150,120))
 
 TradersHut.addNPC(Trader, pygame.Rect(325,150,100,100))
 

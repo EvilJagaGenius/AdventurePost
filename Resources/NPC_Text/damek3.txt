@@ -1,0 +1,10 @@
+o~There you are.
+m~What's up?
+q0~Let's go home.
+q1~I'm going to look around a bit more.
+q2~What's downstairs?
+q3~
+r0~Nah, I don't think so.  They have a full armory here, you should find something to defend yourself with first.|And no, that mining tool is not an excuse for a weapon.  You could probably check with the smith and armorer, Nuhrii, for something to fit you.
+r1~Come back whenever you're done.
+r2~The armory and the storage rooms.  They have a gym down there too.  Once you find something like a sword or a disk, let's go down there and I'll show you how to use it.
+bye~r1
