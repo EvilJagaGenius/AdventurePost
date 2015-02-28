@@ -1,2 +1,2 @@
-scenes.TradersHut_Outside
+scenes.fortress25
 Player("Jaga",0,[])

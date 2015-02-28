@@ -4,6 +4,9 @@ q0~Well, aren't you Mr. Big Fat and Nasty.
 r0~*swipe*  AAUGH!  Bad idea...
 q1~Leave
 r1~I'm gonna think this over a little more...
-q2~
+q2~Bring me back to life!
 q3~
 bye~r1
+
+r2~(It grabs you in its claws and takes off...)
+addCmds~if self.state=='r2': self.teleport=APtalk.fortressReturn

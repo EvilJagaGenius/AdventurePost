@@ -8,12 +8,17 @@ from APtalk import *
 
 class NPC:
     #Non-Player Character.  The other beings you can talk to in the game.
-    def __init__(self, name, spriteName, fileName):
+    def __init__(self, name, imgName, fileName, spriteName=None):
         self.name = name
         if spriteName != None:
-            self.sprite = pygame.transform.scale(imgLoad(spriteName, 'n').convert(), (WX, WY))
+            self.sprite = imgLoad(spriteName, 'n').convert()
+            self.sprite.set_colorkey(self.sprite.get_at((0,0)))
         else:
             self.sprite = None
+        if imgName != None:
+            self.image = pygame.transform.scale(imgLoad(imgName, 'n').convert(), (WX, WY))
+        else:
+            self.image = None
         self.words = []
         txtPath = txtLoad(fileName, 'n')
         for line in open(txtPath, 'r'):
@@ -86,8 +91,8 @@ class NPC:
             blah.set_alpha(200)
             blah.fill((100, 100, 100))
             #This is the equivalent of clearing the surface for blah.
-            if self.sprite != None:
-                window.blit(self.sprite, bkgRect)
+            if self.image != None:
+                window.blit(self.image, bkgRect)
             else:
                 window.blit(sceneBkg, bkgRect)
 

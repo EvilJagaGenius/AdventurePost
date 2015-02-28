@@ -236,6 +236,11 @@ fortress19 = Scene('Fortress19.png', 'fortress19')
 fortress20 = Scene('Fortress20.png', 'fortress20')
 fortress21 = Scene('Fortress21.png', 'fortress21')
 fortress22 = Scene('Fortress22.png', 'fortress22')
+fortress23 = Scene('Fortress23.png', 'fortress23')
+fortress24 = Scene('Fortress24.png', 'fortress24')
+fortress25 = Scene('Fortress25.png', 'fortress25')
+fortress26 = Scene('Fortress26.png', 'fortress26')
+
 #Miscellaneous
 TradersHut = Scene('TradersHut.png', 'TradersHut')
 TradersHut_Outside = Scene('TradersHut_Outside.png', 'TradersHut_Outside')
@@ -275,6 +280,8 @@ chap7_pt2 = CutChapter('chapter7_pt2.txt', 'chap7_pt2', '', 'Post7_pt2.ogg')
 fall = CutChapter('fall.txt', 'fall', 'player.delCompanion(APtalk.cDamek); player.delCompanion(APtalk.cNuparu)')
 regroup = CutChapter('regroup.txt', 'regroup', 'player.addCompanion(APtalk.cDamek); APtalk.cDamek.editWords("cDamek3.txt", player); player.addCompanion(APtalk.cNuparu); APtalk.cNuparu.editWords("cNuparu2.txt", player); APtalk.fortress14.delHotSpot(self, player); APtalk.fortress14.addHotSpot(APtalk.fortress15, pygame.Rect(140,100,340,200), False, player)')
 chap8 = CutChapter('chapter8.txt', 'chap8', 'APtalk.TradersHut.addHotSpot(APtalk.TradersHut_Outside, pygame.Rect(500,80,100,160))')
+fortressReturn = CutChapter('FortressReturn.txt', 'fortressReturn')
+NuparusTale = CutChapter('NuparusTale.txt', 'NuparusTale')
 
 #NPCs
 Gadjati = NPC('Gadjati', None, 'gadjati.txt')
@@ -311,6 +318,7 @@ closet = NPC('closet', None, 'closet.txt')
 KOdGuard = NPC('KOdGuard', None, 'KOdGuard.txt')
 Rama = NPC('Rama', None, 'rama.txt')
 Trader = NPC('Trader', None, 'trader.txt')
+FortressNuparu = NPC('FortressNuparu', None, 'nuparu2.txt', 'NuparuSprite.png')
 #Comapnions
 cDamek = Companion('cDamek', 'cDamek.txt', 'CDamek.png', 'Damek')
 cNuparu = Companion('cNuparu', 'cNuparu.txt', 'CNuparu.png', 'Nuparu')
@@ -1010,6 +1018,17 @@ fortress21.returnSpot(fortress20)
 
 fortress22.addHotSpot(chap7_pt1, pygame.Rect(140,100,340,200))
 
+fortress23.addHotSpot(fortress24, leftRect)
+fortress23.addHotSpot(fortress26, rightRect)
+fortress23.addHotSpot(fortress25, pygame.Rect(330,140,100,150))
+
+fortress24.returnSpot(fortress23)
+
+fortress25.returnSpot(fortress23)
+fortress25.addNPC(FortressNuparu, pygame.Rect(300,200,100,100))
+
+fortress26.returnSpot(fortress23)
+
 TradersHut.addNPC(Trader, pygame.Rect(325,150,100,100))
 
 TradersHut_Outside.returnSpot(TradersHut)
@@ -1045,6 +1064,8 @@ Kylae_Duel_pt2.addTarget(Bomb)
 fall.addTarget(fortressEntrance)
 regroup.addTarget(fortress15)
 chap8.addTarget(TradersHut)
+fortressReturn.addTarget(fortress23)
+NuparusTale.addTarget(fortress25)
 Bomb.addTargets(chap4, Kylae_Duel_pt2)
 elevatorLock.addTargets(onuElevator2, onuElevator1)
 

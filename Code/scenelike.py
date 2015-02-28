@@ -48,6 +48,20 @@ class Scene: #Note:  Tap 'E' to see what scene you're in
                     self.delItem(i[0])
                 else:
                     window.blit(i[0].sprite, i[1])
+            for i in self.hotSpots:
+                if i[1].collidepoint(mousePos):
+                    mouseState = False
+                    if i[1] != rightRect and i[1] != leftRect:
+                        window.blit(sceneCursor, (mousePos[0]-12, mousePos[1]-12))
+                    elif i[1] == rightRect or i[1] == leftRect:
+                        window.blit(returnCursor, (mousePos[0]-12, mousePos[1]-12))
+            for i in self.talks:
+                if i[0].sprite != None:
+                    window.blit(pygame.transform.scale(i[0].sprite, (i[1].width, i[1].height)), i[1])
+            for i in self.items:
+                if i[1].collidepoint(mousePos):
+                    mouseState=False
+                    window.blit(pickupCursor, (mousePos[0]-12, mousePos[1]-12))
             CHS = self.chkHotSpots(events)
             CI = self.chkItems(events)
             CNPC = self.chkNPC(events)
@@ -69,21 +83,12 @@ class Scene: #Note:  Tap 'E' to see what scene you're in
             if editMode:
                 window.blit(sTxt.render(self.name, True, (255,51,0)), (0,WY-40))
                 window.blit(sTxt.render(str(mousePos), True, (255,51,0)), (0,WY-50))
-            for i in self.hotSpots:
-                if i[1].collidepoint(mousePos):
-                    mouseState = False
-                    if i[1] != rightRect and i[1] != leftRect:
-                        window.blit(sceneCursor, (mousePos[0]-12, mousePos[1]-12))
-                    elif i[1] == rightRect or i[1] == leftRect:
-                        window.blit(returnCursor, (mousePos[0]-12, mousePos[1]-12))
+
             for i in self.talks:
                 if i[1].collidepoint(mousePos):
                     mouseState=False
                     window.blit(talkCursor, (mousePos[0]-12, mousePos[1]-12))
-            for i in self.items:
-                if i[1].collidepoint(mousePos):
-                    mouseState=False
-                    window.blit(pickupCursor, (mousePos[0]-12, mousePos[1]-12))
+            
             pygame.mouse.set_visible(mouseState)
             pygame.display.update()
             

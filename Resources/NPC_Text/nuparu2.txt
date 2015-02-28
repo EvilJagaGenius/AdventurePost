@@ -1,0 +1,11 @@
+o~(Nuparu) Would you excuse me, for a second?|(Scientist) Sure.  Take all the time you need.|(Nuparu) Phew.  You're okay.  I was scared, you know... all the Rama, and you and Ahkmou disappearing into thin air... man, it's been a long day.
+m~Can I help with anything?
+q0~That's it.  Thanks.
+r0~See ya!
+q1~What's in the bubble?
+r1~Well... that's kinda tough.  You see, it's nothing.|(Nothing?  What do you mean?)|It FEELS like a liquid... you know that venom Damek saw outside?  This is it.  But all the sensors on the computer say it has no substance at all--it is nothing.|(But it has to exist, doesn't it?)|Of course--I mean, I THINK so.. but I can't be sure...
+q2~How well do you know Ahkmou?
+r2~It's a long story...|(I've got time.)|Alright then.  Let me tell you what I THOUGHT I knew.|
+q3~
+bye~r0
+addCmds~if self.state=='r2' and self.part==3: self.teleport=APtalk.NuparusTale
