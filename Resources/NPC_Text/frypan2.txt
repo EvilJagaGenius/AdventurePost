@@ -1,0 +1,10 @@
+o~Hello!  So you must be the Po-Matoran everyone was talking about.  Welcome to my grill!
+m~What can I do you for!
+q0~Who are you?
+q1~What's on the menu?
+q2~
+q3~Goodbye.
+r0~Well, my REAL name is Shakakuriaktalanuri.  But since I'm the only Guardsman who knows how to cook around here, everyone calls me Frypan.|(Voice from kitchen) Yeah, right!|I don't hear any complaints around here.|(Voice) That's because all the people who would've complained died from eating this manure.|Oh, come on.  You're not dead.|(Voice) I will be if you don't change your recipes!
+r1~Well, let me see...|(Voice) Frypan, what the heck IS this stuff?|Oh, that?  That's sausage.|(Voice) It sure doesn't smell like sausage!  It smells like Muaka puke!|Well, actually, SOME of it is Muaka.  About one-third Muaka, some ice bats I had lying around, a Mahi goat liver...|(Voice) And this snot that's covering the entire thing?|Secret sauce.  Very secret special recipe.  Learned it from a crazed hermit in Le-Wahi.
+r3~Enjoy!
+bye~r3
