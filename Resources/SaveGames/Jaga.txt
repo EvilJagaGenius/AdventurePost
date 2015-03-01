@@ -1,2 +1,2 @@
-scenes.fortress24
+scenes.Lvl6
 Player("Jaga",0,[scenes.HammerHatchet.setAmt(1),scenes.Disk.setAmt(1),])

@@ -1,0 +1,3 @@
++block|Block|0|0|10|1010
++block|Block|10|710|2010|70
++voice|50|660|50|50|Welcome to the dojo!  Let's start with hand-to-hand fighting.|110|660|50|50

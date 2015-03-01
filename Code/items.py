@@ -6,6 +6,44 @@ from APtalk import *
 print('Loading items')
 
 #Special items
+
+class HammerHatchet:
+    def __init__(self):
+        self.sprite = pygame.transform.scale(imgLoad('HammerHatchet.png', 'i'), (50,50)).convert()
+        self.sprite.set_colorkey((0,255,0))
+        self.name = "HammerHatchet"
+        self.screenName = "Hammer-Hatchet"
+        self.amt = 1
+        self.maxcount = 1
+
+    def use(self, player, currentScene):
+        if currentScene == 'FortressDamek' and player.contains(APtalk.Disk):
+            APtalk.FortressDamek.state = 'o'
+            APtalk.FortressDamek.part = 0
+            APtalk.FortressDamek.editWords('damek4.txt', player)
+
+    def setAmt(self, junk):
+        return self
+
+class Disk:
+    def __init__(self):
+        self.sprite = pygame.transform.scale(imgLoad('Disk.png', 'i'), (50,50)).convert()
+        self.sprite.set_colorkey((0,255,0))
+        self.name = "Disk"
+        self.screenName = "Disk"
+        self.amt = 1
+        self.maxcount = 1
+
+    def use(self, player, currentScene):
+        if currentScene == 'FortressDamek' and player.contains(APtalk.HammerHatchet):
+            APtalk.FortressDamek.state = 'o'
+            APtalk.FortressDamek.part = 0
+            APtalk.FortressDamek.editWords('damek4.txt', player)
+
+    def setAmt(self, junk):
+        return self
+
+
 class PiatarasLetter:
     def __init__(self):
         self.sprite = pygame.transform.scale(imgLoad('PiatarasLetter.bmp', 'i'), (50,50))

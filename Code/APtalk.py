@@ -1,4 +1,4 @@
-#Adventure Posts Complete, v6.4 (Windows Version)
+#Adventure Posts Complete, v7.1 (Windows Version)
 #by evil_jaga_genius
 #v.6, Like a ninja kick
 #To the glory of God
@@ -473,7 +473,7 @@ WX = 600
 WY = 400
 bkgRect = pygame.Rect(0, 0, WX, WY)
 window = pygame.display.set_mode((WX, WY), 0, 32)
-pygame.display.set_caption('Adventure Posts! [beta v.6.4]')
+pygame.display.set_caption('Adventure Posts! [beta v.7.1]')
 
 #This sets the font, large and small
 txt = pygame.font.Font(None, 30)

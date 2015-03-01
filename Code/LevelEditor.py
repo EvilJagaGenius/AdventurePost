@@ -645,9 +645,9 @@ def roundToTen(num):
 
 
 print(".bmp file name")
-bmpFile = 'Level5.bmp'
+bmpFile = 'Level6.bmp'
 print(".txt file name")
-txtFile = 'Level5.txt'
+txtFile = 'Level6.txt'
 print('Loading...')
 
 WX = 600

@@ -257,14 +257,11 @@ elevatorLock = Lock('5887930', 'elevatorLock')
 
 #APPLE levels
 Lvl1 = Level('Level1.bmp', 'Lvl1', 'Level1.txt', 'Img2.png')
-
 Lvl2 = Level('Level2.bmp', 'Lvl2', 'Level2.txt', 'Img2.png')
-
 Lvl3 = Level('Level3.bmp', 'Lvl3', 'Level3.txt', 'OnuTunnel17.png', ONUWAHI)
-
 Lvl4 = Level('Level4.bmp', 'Lvl4', 'Level4.txt', 'OnuTunnel46.png', KOWAHI)
-
 Lvl5 = Level('Level5.bmp', 'Lvl5', 'Level5.txt', 'Fortress2.png', KOWAHI)
+Lvl6 = Level('Level6.bmp', 'Lvl6', 'Level6.txt', 'Fortress2.png', KOWAHI)
 
 #CutChapters, in chronological order
 chap1 = CutChapter('chapter1.txt', 'chap1', '', 'Post1.ogg')
@@ -335,8 +332,8 @@ JalasRing = InventoryItem('JalasRing.bmp', "JalasRing", "Jala's Ring")
 OnepusRing = InventoryItem('OnepusRing.bmp', "OnepusRing", "Onepu's Ring")
 TranqDart = InventoryItem('TranqDart.bmp', 'TranqDart', '???')
 Plate = Plate()
-Disk = InventoryItem('Disk.png', 'Disk')
-HammerHatchet = InventoryItem('HammerHatchet.png', 'HammerHatchet', 'Hammer-Hatchet')
+Disk = Disk()
+HammerHatchet = HammerHatchet()
 Empty_Bottle = Empty_Bottle()
 Water_Bottle = Water_Bottle()
 Pure_Water = Pure_Water()

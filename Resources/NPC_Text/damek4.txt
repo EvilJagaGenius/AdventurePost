@@ -1,0 +1,3 @@
+o~(I got a disk, and this bad boy.  What do you think?)|Isn't that the mining tool you had earlier?|(Well, yeah... but I had it forged into this blade.  I like it better than just a sword.)|Whatever, it's your neck.  Follow me and I'll show you the dojo downstairs.|
+bye~None
+addCmds~if self.part==5: self.teleport=APtalk.Lvl6
