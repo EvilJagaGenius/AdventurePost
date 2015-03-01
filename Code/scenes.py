@@ -240,6 +240,7 @@ fortress23 = Scene('Fortress23.png', 'fortress23')
 fortress24 = Scene('Fortress24.png', 'fortress24')
 fortress25 = Scene('Fortress25.png', 'fortress25')
 fortress26 = Scene('Fortress26.png', 'fortress26')
+FrypansGrill = Scene('Frypan.png', 'FrypansGrill')
 
 #Miscellaneous
 TradersHut = Scene('TradersHut.png', 'TradersHut')
@@ -321,6 +322,7 @@ Trader = NPC('Trader', None, 'trader.txt')
 FortressNuparu = NPC('FortressNuparu', None, 'nuparu2.txt', 'NuparuSprite.png')
 FortressDamek = NPC('FortressDamek', None, 'damek3.txt', 'DamekSprite.png')
 Nuhrii = NPC('Nuhrii', None, 'nuhrii.txt', 'NuhriiSprite.png')
+Frypan = NPC('Frypan', None, 'frypan.txt')
 #Comapnions
 cDamek = Companion('cDamek', 'cDamek.txt', 'CDamek.png', 'Damek')
 cNuparu = Companion('cNuparu', 'cNuparu.txt', 'CNuparu.png', 'Nuparu')
@@ -1028,13 +1030,17 @@ fortress23.addHotSpot(fortress26, rightRect)
 fortress23.addHotSpot(fortress25, pygame.Rect(330,140,100,150))
 
 fortress24.returnSpot(fortress23)
-fortress24.addNPC(Nuhrii, pygame.Rect(200,200,150,120))
+fortress24.addNPC(Nuhrii, pygame.Rect(200,160,150,120))
 
 fortress25.returnSpot(fortress23)
 fortress25.addNPC(FortressNuparu, pygame.Rect(300,200,100,100))
 
 fortress26.returnSpot(fortress23)
+fortress26.addHotSpot(FrypansGrill, pygame.Rect(130,160,150,150))
 fortress26.addNPC(FortressDamek, pygame.Rect(300,200,150,120))
+
+FrypansGrill.returnSpot(fortress26)
+FrypansGrill.addNPC(Frypan, pygame.Rect(100,100,400,200))
 
 TradersHut.addNPC(Trader, pygame.Rect(325,150,100,100))
 

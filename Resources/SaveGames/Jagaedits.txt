@@ -1,1 +1,8 @@
 scenes.Nuhrii.startEdits('nuhrii2.txt')
+scenes.Frypan.startEdits('frypan2.txt')
+scenes.Nuhrii.startEdits('nuhrii3.txt')
+scenes.Nuhrii.startEdits('nuhrii2.txt')
+scenes.Nuhrii.startEdits('nuhrii3.txt')
+scenes.Nuhrii.startEdits('nuhrii2.txt')
+scenes.Nuhrii.startEdits('nuhrii3.txt')
+scenes.Nuhrii.startEdits('nuhrii2.txt')

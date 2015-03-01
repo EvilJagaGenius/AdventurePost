@@ -17,14 +17,14 @@ class PiatarasLetter:
 
     def use(self, player, currentScene):
         if currentScene == 'Onepu':
-            scenes.Onepu.state = 'o'
-            scenes.Onepu.part = 0
-            scenes.Onepu.editWords('onepu2.txt', player)
+            APtalk.Onepu.state = 'o'
+            APtalk.Onepu.part = 0
+            APtalk.Onepu.editWords('onepu2.txt', player)
         elif currentScene == 'Jala':
-            scenes.Jala.state = 'o'
-            scenes.Jala.part = 0
-            scenes.Jala.editWords('jala2.txt', player)
-            scenes.Onepu.editWords('onepu3.txt', player)
+            APtalk.Jala.state = 'o'
+            APtalk.Jala.part = 0
+            APtalk.Jala.editWords('jala2.txt', player)
+            APtalk.Onepu.editWords('onepu3.txt', player)
 
     def setAmt(self, junk):
         return self
@@ -32,7 +32,7 @@ class PiatarasLetter:
 class Plate:
     def __init__(self):
         self.sprite = pygame.transform.scale(imgLoad('Plate.png', 'i'), (50,50))
-        self.sprite.set_colorkey((255,0,0))
+        self.sprite.set_colorkey((0,255,0))
         self.name = "Plate"
         self.screenName = "Plate of... something"
         self.amt = 1
@@ -40,9 +40,10 @@ class Plate:
 
     def use(self, player, currentScene):
         if currentScene == 'Nuhrii':
-            scenes.Nuhrii.state = 'o'
-            scenes.Nuhrii.part = 0
-            scenes.Nuhrii.editWords('nuhrii3.txt', player)
+            APtalk.Nuhrii.state = 'o'
+            APtalk.Nuhrii.part = 0
+            APtalk.Nuhrii.editWords('nuhrii3.txt', player)
+            player.remove(self)
 
     def setAmt(self, junk):
         return self
@@ -57,7 +58,7 @@ class Empty_Bottle:
         self.maxcount = 1
 
     def use(self, player, currentScene):
-        if (currentScene == 'scenes.onuKoro4') or(currentScene == 'scenes.onuKoro5') or (currentScene == 'scenes.onuKoro6'):
+        if (currentScene == 'APtalk.onuKoro4') or(currentScene == 'APtalk.onuKoro5') or (currentScene == 'APtalk.onuKoro6'):
             player.add(scenes.Water_Bottle)
             player.remove(self)
 
@@ -74,7 +75,7 @@ class Water_Bottle:
         self.amt = 1
 
     def use(self, player, currentScene):
-        if (currentScene == 'scenes.lightMine7') or (currentScene == 'Kaj'):
+        if (currentScene == 'APtalk.lightMine7') or (currentScene == 'Kaj'):
             player.add(scenes.Pure_Water)
             player.remove(self)
 
@@ -92,9 +93,9 @@ class Pure_Water:
 
     def use(self, player, currentScene):
         if (currentScene == 'Dashka'):
-            scenes.Dashka.editWords('dashka3.txt', player)
-            scenes.Dashka.state='o'
-            scenes.Dashka.part = 0
+            APtalk.Dashka.editWords('dashka3.txt', player)
+            APtalk.Dashka.state='o'
+            APtalk.Dashka.part = 0
             player.remove(self)
 
     def setAmt(self, junk):
