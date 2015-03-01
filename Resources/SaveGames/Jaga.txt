@@ -1,2 +1,2 @@
-scenes.fortress23
-Player("Jaga",0,[])
+scenes.fortress26
+Player("Jaga",0,[scenes.HammerHatchet.setAmt(1),])

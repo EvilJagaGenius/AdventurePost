@@ -1,0 +1,1 @@
+scenes.Nuhrii.startEdits('nuhrii2.txt')

@@ -1,0 +1,9 @@
+o~Good day, traveler.
+m~How may I be of assistance to a Po-Matoran?
+q0~Goodbye.
+q1~Who are you?
+q2~
+q3~
+r0~A pleasure meeting you.
+r1~Pfc. Nuhrii of North March Company Alpha!  At your service!|I'm the local blacksmith as well.  I make tools for the rest of the Guardsmen and make sure they're in good condition.  It's an art in itself.
+bye~r0
