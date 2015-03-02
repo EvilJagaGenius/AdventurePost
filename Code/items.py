@@ -29,6 +29,24 @@ class PiatarasLetter:
     def setAmt(self, junk):
         return self
 
+class Plate:
+    def __init__(self):
+        self.sprite = pygame.transform.scale(imgLoad('Plate.png', 'i'), (50,50))
+        self.sprite.set_colorkey((255,0,0))
+        self.name = "Plate"
+        self.screenName = "Plate of... something"
+        self.amt = 1
+        self.maxcount = 1
+
+    def use(self, player, currentScene):
+        if currentScene == 'Nuhrii':
+            scenes.Nuhrii.state = 'o'
+            scenes.Nuhrii.part = 0
+            scenes.Nuhrii.editWords('nuhrii3.txt', player)
+
+    def setAmt(self, junk):
+        return self
+    
 class Empty_Bottle:
     def __init__(self):
         self.sprite = pygame.transform.scale(imgLoad('EmptyBottle.bmp', 'i'), (50,50))
